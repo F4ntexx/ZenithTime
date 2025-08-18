@@ -66,7 +66,7 @@ buttonProductivity = document
       "w-[300px]",
       "mt-30",
       "mr-15",
-      "text-white",
+      "text-white", 
       "text-center"
     );
   });
