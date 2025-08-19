@@ -1,4 +1,5 @@
-buttonGroupsSection = document.getElementById("infoApp");
+function buttonInfoApp(){
+  buttonGroupsSection = document.getElementById("infoApp");
 const backgroundInfoSection = document.createElement("div");
 backgroundInfoSection.className = "backgroundInfoSection";
 backgroundInfoSection.classList.add(
@@ -7,10 +8,10 @@ backgroundInfoSection.classList.add(
   "flex-col",
   "m-auto",
   "md:h-[400px]",
-  "md:w-[800px]",
+  "md:w-[750px]",
   "h-[700px]",
   "w-[m-w]",
-  "bg-slate-800"
+  "bg-slate-800",
 );
 buttonGroupsSection.appendChild(backgroundInfoSection);
 
@@ -27,17 +28,18 @@ buttonPlanning = document.getElementById("buttonPlanning");
 buttonPlanning.addEventListener("click", function () {
   image.className = "image";
   image.src = "/src/imagePlan.png";
-  image.classList.add("md:h-95", "h-120", "w-105", "m-auto", "mt-1");
+  image.classList.add("md:h-95", "h-110", "w-105", "m-auto", "mt-1");
 
   subtitle.className = "subtitle";
   subtitle.textContent =
     "Получай вовремя напоминания о задачах, встречах, уроках. Настрой уведомления под себя и не пропусти ничего важного!";
   subtitle.classList.add(
     "w-[300px]",
-    "mt-30",
-    "mr-15",
+    "md:mt-30",
+    "-mt-30",
     "text-white",
-    "text-center"
+    "text-center",
+    "m-auto",
   );
 });
 buttonReminders = document
@@ -48,9 +50,9 @@ buttonReminders = document
     subtitle.classList.add(
       "w-[300px]",
       "mt-30",
-      "mr-15",
-      "text-white",
-      "text-center"
+    "text-white",
+    "text-center",
+    "m-auto",
     );
     image.src = "/src/phone.png";
   });
@@ -65,8 +67,12 @@ buttonProductivity = document
     subtitle.classList.add(
       "w-[300px]",
       "mt-30",
-      "mr-15",
-      "text-white", 
-      "text-center"
+    "text-white",
+    "text-center",
+    "m-auto",
     );
   });
+
+}
+
+buttonInfoApp();
