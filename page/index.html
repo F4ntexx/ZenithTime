@@ -4,7 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link rel="stylesheet" href="/style/index.css">
+    <link rel="stylesheet" href="/style/index.css" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
     <title>Zenith Time</title>
   </head>
   <body class="bg-white overflow-x-hidden">
@@ -12,7 +14,7 @@
       class="h-[750px] bg-linear-to-b from-zinc-950 from-30% to-slate-900"
     >
       <header>
-        <nav class="border-gray-200 py-6">
+        <nav class="border-gray-200 py-6" id="navigationMenu">
           <div
             class="flex flex-wrap items-center justify-between max-w-screen-xl px-4 mx-auto"
           >
@@ -20,6 +22,7 @@
               src="/src/logo.png"
               class="h-6 mr-3 sm:h-9"
               alt="Zenith Time"
+              id="logotypeHeader"
             />
             <div class="flex items-center lg:order-2">
               <div class="hidden mt-2 mr-4 sm:inline-block">
@@ -76,7 +79,7 @@
                 </li>
                 <li>
                   <a
-                    href="#infoApp"
+                    href="#sectionInfoApp"
                     class="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-green-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-sky-900 lg:p-0"
                     >о программе</a
                   >
@@ -94,8 +97,8 @@
         </nav>
       </header>
       <script src="https://unpkg.com/flowbite@1.4.1/dist/flowbite.js"></script>
-      <main>
-        <div class="text-center my-50">
+      <main class="main">
+        <div class="text-center my-50" id="mainTitleSubtitle">
           <p
             class="text-6xl font-bold bg-gradient-to-b from-white from-50% to-blue-900 text-transparent bg-clip-text inline-block"
           >
@@ -107,7 +110,10 @@
             новые горизонты.
           </h1>
         </div>
-        <div class="flex justify-center gap-3 -my-30">
+        <div
+          class="flex justify-center gap-3 -my-30"
+          id="buttonRegistrationLogin"
+        >
           <a
             href=""
             class="px-10 py-2 bg-transparent rounded-md outline-2 outline-offset-0 outline-white text-white"
@@ -119,7 +125,7 @@
             >Войти</a
           >
         </div>
-        <section class="-z-10">
+        <section class="sectionStar">
           <p
             class="text-white -z-1 text-xs flex justify-center md:mr-10 md:-mt-20 mr-10 -mt-50 animate-pulse"
           >
@@ -223,15 +229,24 @@
         </section>
       </main>
     </section>
-    <section class="md:h-[1000px] h-[1200px] bg-slate-900" id="infoApp">
-      <p class="text-6xl font-bold text-slate-800 flex justify-center py-10">
-        О ПРОГРАММЕ
-      </p>
-      <p class="text-white font-bold flex justify-center text-6xl -mt-19">
-        Zenith time
-      </p>
+    <section class="md:h-[1000px] h-[1200px] bg-slate-900" id="sectionInfoApp">
+      <div id="sectionTitleSubtitle">
+        <p
+          class="text-6xl font-bold text-slate-800 flex justify-center py-10"
+          id="titleInfoAppOneWord"
+        >
+          О ПРОГРАММЕ
+        </p>
+        <p
+          class="text-white font-bold flex justify-center text-6xl -mt-19"
+          id="titleInfoAppTwoWord"
+        >
+          Zenith time
+        </p>
+      </div>
       <p
         class="md:text-xl text-lg font-medium flex justify-center text-center text-zinc-300 pt-8"
+        id="subtitleInfoApp"
       >
         интуитивно понятное приложение-напоминалка, созданное для того, чтобы
         помочь Вам <br />
@@ -257,13 +272,15 @@
       </div>
     </section>
     <section class="h-[1200px] bg-slate-900" id="functionSection">
-      <p class="text-6xl font-bold text-slate-800 flex justify-center py-10">
-        ФУНКЦИИ
-      </p>
-      <p class="text-white font-bold flex justify-center text-6xl -mt-17">
-        ПРОГРАММЫ
-      </p>
-      <article>
+      <div class="functionTitle">
+        <p class="text-6xl font-bold text-slate-800 flex justify-center py-10">
+          ФУНКЦИИ
+        </p>
+        <p class="text-white font-bold flex justify-center text-6xl -mt-17">
+          ПРОГРАММЫ
+        </p>
+      </div>
+      <article class="article">
         <div class="flex md:flex-row flex-col mt-10" id="reminderSection">
           <img
             src="/src/imageFunctionReminder.png"
@@ -289,7 +306,7 @@
       </article>
 
       <article>
-        <div class="flex md:flex-row flex-col justify-end mt-30">
+        <div class="flex md:flex-row flex-col justify-end mt-30" id="settingSection">
           <div>
             <p
               class="text-center md:text-left mt-10 md:ml-3 lg:ml-3 lg:mt-20 text-white font-bold text-2xl"
@@ -313,18 +330,6 @@
       </article>
     </section>
     <script src="/script/index.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
-    <script>
-      gsap.to('#reminderSection', {
-        scrollTrigger: {
-          triger: '#functionSection',
-          markers: true,
-          start: 'center top'
-        },
-        x: 900,
-      
-          
-      })
-    </script>
+    <script src="/script/animate.js"></script>
   </body>
 </html>

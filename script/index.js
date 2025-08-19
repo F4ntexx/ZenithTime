@@ -1,5 +1,5 @@
 function buttonInfoApp(){
-  buttonGroupsSection = document.getElementById("infoApp");
+buttonGroupsSection = document.getElementById("sectionInfoApp");
 const backgroundInfoSection = document.createElement("div");
 backgroundInfoSection.className = "backgroundInfoSection";
 backgroundInfoSection.classList.add(
