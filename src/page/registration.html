@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=arrow_back"
+    />
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta
+      name="google-signin-client_id"
+      content="YOUR_CLIENT_ID.apps.googleusercontent.com"
+    />
+    <title>registration</title>
+  </head>
+  <body class="bg-slate-900">
+    <main class="flex md:h-[45vw] md:w-[m-w]">
+      <a href="/src/page/index.html" class="text-white ml-10 mt-5"
+        ><span class="material-symbols-outlined"> arrow_back </span></a
+      >
+      <div class="h-max w-180 my-15" id="registrationSection">
+        <p class="flex justify-center text-white text-3xl font-bold my-10">
+          Добро пожаловать в<br />
+          ZenithTime
+        </p>
+        <form class="flex flex-col gap-5">
+          <input
+            class="border-white border-b-2 text-white w-78 mx-51 outline-none"
+            placeholder="Nickname" id="nickname"
+          />
+          <br />
+          <input
+            class="border-white border-b-2 text-white w-78 mx-51 outline-none"
+            type="email"
+            placeholder="Email"
+          />
+          <br />
+          <input
+            class="border-white border-b-2 text-white w-78 mx-51 outline-none"
+            type="password"
+            placeholder="Password"
+          />
+          <label class="flex justify-center gap-3 mr-12 text-white mt-7"
+            ><input class="" type="checkbox" /><a
+              href="https://policies.google.com/privacy/frameworks?hl=ru"
+              >Политика конфиденциальности</a
+            ></label
+          >
+          <button
+            class="flex justify-center bg-white m-auto w-80 h-12 items-center rounded-sm cursor-pointer mt-8"
+            type="submit"
+          >
+            Зарегистрироваться
+          </button>
+          <div class="m-auto w-80 h-[1px] my-3 bg-white"></div>
+          <div class="g-signin2 m-auto" data-onsuccess="onSignIn"></div>
+        </form>
+      </div>
+      <div
+        class="bg-white"
+        id="imageSection"
+      >
+        <img
+          src="/src/assets/images/imageRegistration.jpg"
+          class="md:h-screen md:w-screen -z-1"
+        />
+        <div class="-my-70 flex flex-col ml-10">
+          <p class="text-white text-6xl">❞</p>
+          <p class="text-white text-xl w-150">
+            Дело нашей жизни состоит не в том, чтобы опередить других, но в том,
+            чтобы опередить самих себя – побить собственные рекорды, сделать
+            так, чтобы наш сегодняшний день превзошел вчерашний, работать
+            усердней, чем когда-либо раньше.<br />
+            <b>Стюарт Б. Джонсон</b>
+          </p>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
