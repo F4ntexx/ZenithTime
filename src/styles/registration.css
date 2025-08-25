@@ -1,6 +1,6 @@
 :root{
-    --accent-color: #8672ff;
-    --base-color: white;
+    --accent-color: #353fae;
+    --base-color: #ffffff;
     --text-color: #2e2b41;
     --input-color: #F3F0FF;
 }
@@ -18,11 +18,11 @@ html{
 
 body{
     min-height: 100vw;
-    background-image: url(/src/assets/images/imageRegistration.jpg);
-    background-size: cover;
-    background-position: right;
+    background: linear-gradient(#114585, #353fae);
     overflow: hidden;
 }
+
+
 
 .wrapper{
     display: flex;
@@ -35,6 +35,12 @@ body{
     width: max(40%,500px);
     padding: 10px;
     border-radius:  0px 50px 50px 0px ;
+}
+
+.material-symbols-outlined{
+    position: relative;
+    margin-right: 35vw;
+    bottom: 8vw;
 }
 
 h1{
