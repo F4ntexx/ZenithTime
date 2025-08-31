@@ -18,6 +18,18 @@ fetch('http://localhost:5000/users' , {
         'Content-Type': 'application/json'
     },
     body: JSON.stringify(dataJSONform)
-}).then(Response => Response.json())
+}).then(Response => {
+    if (Response.ok){
+        window.location.href = '/src/page/app.html';
+    }else{
+        console.log('Error runtime sendling ', Response.status)
+    }
+})
+Response => Response.json()
+.catch (error => {
+console.log('Ошибка ввода' , error);
+})
 .then(Response => console.log(Response))
 });
+
+
