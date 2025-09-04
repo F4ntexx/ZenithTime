@@ -3,14 +3,14 @@ const nickname = document.getElementById('nickname');
 const email = document.getElementById('email');
 const password = document.getElementById('password');
 
-form.addEventListener('submit', (e) => {
-    e.preventDefault();
-
- const dataJSONform = {
+const dataJSONform = {
     "nickname": nickname.value,
     "email": email.value,
     "password": password.value,
 }
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
 
 fetch('http://localhost:5000/users' , {
     method: 'POST',
@@ -31,8 +31,6 @@ console.log('Ошибка ввода' , error);
 })
 .then(Response => console.log(Response))
  const userDateLocalSt = localStorage.setItem('user', JSON.stringify(dataJSONform));
+const users = [userDateLocalSt]
 }
 );
-
-
-

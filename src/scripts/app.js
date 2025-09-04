@@ -5,6 +5,9 @@ const completedButton = document.getElementById("completedButton");
 const profileButton = document.getElementById("profileButton");
 const contentSection = document.getElementById("contentSection");
 
+const userDataString = localStorage.getItem("user");
+const userData = JSON.parse(userDataString);
+
 profileButton.addEventListener(
   "click",
   () => {
@@ -16,50 +19,68 @@ profileButton.addEventListener(
     titleInputNickname.textContent = "Nickname";
     titleInputNickname.classList.add("text-white", "mt-4");
 
-    const inputNickname = document.createElement("input");
+    const inputNickname = document.createElement("p");
+    inputNickname.contentEditable = true;
     inputNickname.classList.add(
+      "items-center",
+      "flex",
       "bg-slate-800",
       "w-100",
       "h-10",
-      "mt-1",
       "rounded-md",
       "shadow-lg",
-      "text-white"
+      "text-white",
+      "pl-1"
     );
+    const nicknameUser = userData.nickname;
+    inputNickname.textContent = nicknameUser;
 
     const titleInputEmail = document.createElement("p");
     titleInputEmail.textContent = "Email";
     titleInputEmail.classList.add("text-white", "mt-4");
 
-    const inputEmail = document.createElement("input");
+    const inputEmail = document.createElement("p");
+    inputEmail.contentEditable = true;
     inputEmail.classList.add(
+      "items-center",
+      "flex",
       "bg-slate-800",
       "w-100",
       "h-10",
-      "mt-1",
       "rounded-md",
       "shadow-lg",
-      "text-white"
+      "text-white",
+      "pl-1"
     );
+
+    const emailUser = userData.email;
+    inputEmail.textContent = emailUser;
 
     const titleInputPassword = document.createElement("p");
     titleInputPassword.textContent = "Password";
     titleInputPassword.classList.add("text-white", "mt-4");
 
-    const inputPassword = document.createElement("input");
+    const inputPassword = document.createElement("p");
+    inputPassword.contentEditable = true;
     inputPassword.classList.add(
+      "items-center",
+      "flex",
       "bg-slate-800",
       "w-100",
       "h-10",
-      "mt-1",
       "rounded-md",
       "shadow-lg",
-      "text-white"
+      "text-white",
+      "pl-1"
     );
 
-    const buttonEditing = document.createElement('button');
-    buttonEditing.type = 'button';
+    const passwordUser = userData.password;
+    inputPassword.textContent = passwordUser;
+
+    const buttonEditing = document.createElement("button");
+    buttonEditing.type = "button";
     buttonEditing.textContent = "Редактировать";
+    buttonEditing.id = "buttonEditing";
     buttonEditing.classList.add(
       "bg-slate-800",
       "w-100",
@@ -68,9 +89,9 @@ profileButton.addEventListener(
       "rounded-md",
       "shadow-lg",
       "text-white",
-      'cursor-pointer'
-
-    )
+      "cursor-pointer",
+      "hover:bg-slate-700"
+    );
 
     contentSection.append(
       titleProfile,
@@ -82,9 +103,6 @@ profileButton.addEventListener(
       inputPassword,
       buttonEditing
     );
-
-
-
   },
   { once: true }
 );
