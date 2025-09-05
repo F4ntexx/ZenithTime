@@ -6,7 +6,7 @@ const password = document.getElementById('password');
 const dataJSONform = {
     "nickname": nickname.value,
     "email": email.value,
-    "password": password.value,
+    "password": password.value
 }
 
 form.addEventListener('submit', (e) => {
@@ -31,6 +31,5 @@ console.log('Ошибка ввода' , error);
 })
 .then(Response => console.log(Response))
  const userDateLocalSt = localStorage.setItem('user', JSON.stringify(dataJSONform));
-const users = [userDateLocalSt]
 }
 );

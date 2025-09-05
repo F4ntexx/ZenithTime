@@ -32,6 +32,7 @@ profileButton.addEventListener(
       "text-white",
       "pl-1"
     );
+
     const nicknameUser = userData.nickname;
     inputNickname.textContent = nicknameUser;
 
@@ -92,7 +93,6 @@ profileButton.addEventListener(
       "cursor-pointer",
       "hover:bg-slate-700"
     );
-
     contentSection.append(
       titleProfile,
       titleInputNickname,
@@ -103,6 +103,11 @@ profileButton.addEventListener(
       inputPassword,
       buttonEditing
     );
+    editForm(buttonEditing, inputNickname, inputEmail, inputPassword);
   },
   { once: true }
 );
+
+function editForm(buttonEditing, inputNickname, inputEmail, inputPassword) {
+  buttonEditing.addEventListener("click", () => {});
+}
