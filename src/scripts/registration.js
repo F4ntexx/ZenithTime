@@ -3,15 +3,17 @@ const nickname = document.getElementById('nickname');
 const email = document.getElementById('email');
 const password = document.getElementById('password');
 
-const dataJSONform = {
-    "nickname": nickname.value,
-    "email": email.value,
-    "password": password.value
-}
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
 
+    const dataJSONform = {
+    nickname: nickname.value,
+    email: email.value,
+    password: password.value,
+}
+
+    console.log(dataJSONform)
 fetch('http://localhost:5000/users' , {
     method: 'POST',
     headers: {

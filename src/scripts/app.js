@@ -109,5 +109,22 @@ profileButton.addEventListener(
 );
 
 function editForm(buttonEditing, inputNickname, inputEmail, inputPassword) {
-  buttonEditing.addEventListener("click", () => {});
+  buttonEditing.addEventListener("click", (e) => {
+    e.preventDefault()    
+  const dataInputEdits = {
+    nickname: inputNickname.innerHTML,
+    email: inputEmail.innerHTML,
+    password: inputPassword.innerHTML,
+  }
+
+  const dataLocalstorage = Object.values(userData);
+  const dataInputs = Object.values(dataInputEdits);
+
+  if (JSON.stringify(dataLocalstorage) === JSON.stringify(dataInputs)){
+    alert('Вы ничего не изменили!')
+  } else{
+    const UserEdits = localStorage.setItem('user', JSON.stringify(dataInputEdits))
+  }
+
+  });
 }
