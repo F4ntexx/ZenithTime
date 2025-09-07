@@ -15,6 +15,11 @@ router.get('/', (req,res) => {
 
 router.post('/', (req, res) => {
      console.log('POST ROUTE REACHED');
+
+
+     router.put('/', (req,res) => {
+        res.send(users)
+     })
      
   const user = req.body;
   const userID = uuidv4();

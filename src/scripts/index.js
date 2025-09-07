@@ -13,7 +13,7 @@ function buttonInfoApp() {
     "w-[m-w]",
     "bg-slate-800"
   );
-  
+
   buttonGroupsSection.appendChild(backgroundInfoSection);
 
   let image;
@@ -26,7 +26,7 @@ function buttonInfoApp() {
   backgroundInfoSection.appendChild(image);
   backgroundInfoSection.appendChild(subtitle);
 
-    function buttonPlanningFunction() {
+  function buttonPlanningFunction() {
     image.src = "/src/assets/images/imagePlan.png";
     image.classList.add(
       "md:h-95",
@@ -46,9 +46,8 @@ function buttonInfoApp() {
       "text-white",
       "text-center",
       "m-auto",
-      "w-100%",
+      "w-100%"
     );
-
   }
   buttonPlanningFunction();
   buttonPlanning = document.getElementById("buttonPlanning");
@@ -66,11 +65,10 @@ function buttonInfoApp() {
         "text-white",
         "text-center",
         "m-auto",
-        "w-100%",
+        "w-100%"
       );
       image.src = "/src/assets/images/phone.png";
-    }
-  );
+    });
 
   buttonProductivity = document
     .getElementById("buttonProductivity")
@@ -87,8 +85,6 @@ function buttonInfoApp() {
         "m-auto"
       );
     });
-
 }
 
 buttonInfoApp();
-

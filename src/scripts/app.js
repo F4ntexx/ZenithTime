@@ -110,21 +110,37 @@ profileButton.addEventListener(
 
 function editForm(buttonEditing, inputNickname, inputEmail, inputPassword) {
   buttonEditing.addEventListener("click", (e) => {
-    e.preventDefault()    
-  const dataInputEdits = {
-    nickname: inputNickname.innerHTML,
-    email: inputEmail.innerHTML,
-    password: inputPassword.innerHTML,
-  }
+    e.preventDefault();
+    const dataInputEdits = {
+      nickname: inputNickname.innerHTML,
+      email: inputEmail.innerHTML,
+      password: inputPassword.innerHTML,
+    };
 
-  const dataLocalstorage = Object.values(userData);
-  const dataInputs = Object.values(dataInputEdits);
+    const dataLocalstorage = Object.values(userData);
+    const dataInputs = Object.values(dataInputEdits);
 
-  if (JSON.stringify(dataLocalstorage) === JSON.stringify(dataInputs)){
-    alert('Вы ничего не изменили!')
-  } else{
-    const UserEdits = localStorage.setItem('user', JSON.stringify(dataInputEdits))
-  }
-
+    if (JSON.stringify(dataLocalstorage) === JSON.stringify(dataInputs)) {
+      new Notification("Ошибка!", {
+        body: "Вы не изменили данные.",
+        icon: "/src/assets/images/logoApp.png",
+      });
+    } else {
+      const UserEdits = localStorage.setItem(
+        "user",
+        JSON.stringify(dataInputEdits)
+      );
+      Notification.requestPermission();
+      new Notification("УСПЕШНО!", {
+        body: "Вы изменили данные профиля.",
+        icon: "/src/assets/images/logoApp.png",
+      });
+    }
+   const url = "http://127.0.0.1:5500/src/page/app.html?";
+    const profileURL = "profile";
+    const searchParams = new URLSearchParams(profileURL);
+    const queryString = searchParams.toString();
+    window.location.href = url + queryString;
+    location.reload("http://127.0.0.1:5500/src/page/app.html?profile=");
   });
 }
