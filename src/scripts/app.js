@@ -5,9 +5,85 @@ const completedButton = document.getElementById("completedButton");
 const profileButton = document.getElementById("profileButton");
 const contentSection = document.getElementById("contentSection");
 
-const userDataString = localStorage.getItem("user");
+let userDataString = localStorage.getItem("user");
 const userData = JSON.parse(userDataString);
 
+createTaskButton.addEventListener(
+  "click",
+  () => {
+    const titleTaskSection = document.createElement("p");
+    titleTaskSection.textContent =
+      "Начните свою цель с маленького напоминания!";
+    titleTaskSection.classList.add(
+      "text-white",
+      "text-3xl",
+      "font-medium",
+      "text-center",
+      "mt-20"
+    );
+
+    const buttonCreate = document.createElement("button");
+    buttonCreate.textContent = "Создать";
+    buttonCreate.type = "button";
+    buttonCreate.classList.add(
+      "border-2",
+      "border-slate-900",
+      "bg-slate-900",
+      "hover:bg-slate-800",
+      "hover:border-slate-800",
+      "rounded-sm",
+      "h-10",
+      "w-80",
+      "text-2xl",
+      "cursor-pointer",
+      "text-white",
+      "font-semibold",
+      "m-auto"
+    );
+
+    contentSection.append(titleTaskSection, buttonCreate);
+    createTask(buttonCreate, titleTaskSection);
+  },
+  { once: true }
+);
+
+function createTask(buttonCreate) {
+  buttonCreate.addEventListener("click", () => {
+    contentSection.textContent = "";
+    const backgoundCreateTask = document.createElement("div");
+    backgoundCreateTask.classList.add(
+      "h-120",
+      "w-120",
+      "bg-slate-900",
+      "flex",
+      "rounded-sm",
+      "m-auto",
+      "flex",
+      "flex-col",
+      "gap-2"
+    );
+
+    contentSection.append(backgoundCreateTask);
+
+    const titleCreateTask = document.createElement("p");
+    titleCreateTask.textContent = "Создать задачу:";
+    titleCreateTask.classList.add(
+      "text-white",
+      "text-medium",
+      "text-xl",
+      "my-3",
+      "mx-2"
+    );
+
+    const fieldСategory = document.createElement("p");
+    fieldСategory.textContent = "Добавить категорию:";
+    fieldСategory.classList.add("text-white", "text-medium", "text-md", "mx-2");
+
+    backgoundCreateTask.append(titleCreateTask, fieldСategory);
+  });
+}
+
+// profile
 profileButton.addEventListener(
   "click",
   () => {
@@ -24,7 +100,7 @@ profileButton.addEventListener(
     inputNickname.classList.add(
       "items-center",
       "flex",
-      "bg-slate-800",
+      "bg-slate-900",
       "w-100",
       "h-10",
       "rounded-md",
@@ -45,7 +121,7 @@ profileButton.addEventListener(
     inputEmail.classList.add(
       "items-center",
       "flex",
-      "bg-slate-800",
+      "bg-slate-900",
       "w-100",
       "h-10",
       "rounded-md",
@@ -66,7 +142,7 @@ profileButton.addEventListener(
     inputPassword.classList.add(
       "items-center",
       "flex",
-      "bg-slate-800",
+      "bg-slate-900",
       "w-100",
       "h-10",
       "rounded-md",
@@ -83,7 +159,7 @@ profileButton.addEventListener(
     buttonEditing.textContent = "Редактировать";
     buttonEditing.id = "buttonEditing";
     buttonEditing.classList.add(
-      "bg-slate-800",
+      "bg-slate-900",
       "w-100",
       "h-10",
       "mt-10",
@@ -91,7 +167,7 @@ profileButton.addEventListener(
       "shadow-lg",
       "text-white",
       "cursor-pointer",
-      "hover:bg-slate-700"
+      "hover:bg-slate-800"
     );
     contentSection.append(
       titleProfile,
@@ -117,7 +193,7 @@ function editForm(buttonEditing, inputNickname, inputEmail, inputPassword) {
       password: inputPassword.innerHTML,
     };
 
-    const dataLocalstorage = Object.values(userData);
+    let dataLocalstorage = Object.values(userData);
     const dataInputs = Object.values(dataInputEdits);
 
     if (JSON.stringify(dataLocalstorage) === JSON.stringify(dataInputs)) {
@@ -135,12 +211,9 @@ function editForm(buttonEditing, inputNickname, inputEmail, inputPassword) {
         body: "Вы изменили данные профиля.",
         icon: "/src/assets/images/logoApp.png",
       });
+      userData.nickname = dataInputEdits.nickname;
+      userData.email = dataInputEdits.email;
+      userData.password = dataInputEdits.password;
     }
-   const url = "http://127.0.0.1:5500/src/page/app.html?";
-    const profileURL = "profile";
-    const searchParams = new URLSearchParams(profileURL);
-    const queryString = searchParams.toString();
-    window.location.href = url + queryString;
-    location.reload("http://127.0.0.1:5500/src/page/app.html?profile=");
   });
 }
