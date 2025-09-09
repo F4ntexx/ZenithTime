@@ -1,3 +1,4 @@
+const logotypeApp = document.getElementById("logotypeApp");
 const settingButton = document.getElementById("settingButton");
 const createTaskButton = document.getElementById("createTaskButton");
 const taskListButton = document.getElementById("taskListButton");
@@ -5,8 +6,12 @@ const completedButton = document.getElementById("completedButton");
 const profileButton = document.getElementById("profileButton");
 const contentSection = document.getElementById("contentSection");
 
-let userDataString = localStorage.getItem("user");
+const userDataString = localStorage.getItem("user");
 const userData = JSON.parse(userDataString);
+
+logotypeApp.addEventListener("click", () => {
+  location.href = "";
+});
 
 createTaskButton.addEventListener(
   "click",
@@ -171,7 +176,23 @@ function createTask(buttonCreate) {
       buttonHobbyCategory,
     ];
 
-    backgoundCreateTask.append(titleCreateTask, fieldСategory, containerButton);
+    const buttonCreate = document.createElement('button');
+    buttonCreate.type = "button";
+    buttonCreate.textContent = "Cоздать";
+    buttonCreate.classList.add(
+      "h-7",
+      "w-30",
+      "bg-slate-200",
+      "cursor-pointer",
+      "ml-2",
+      "rounded-sm"
+    )
+
+    buttonCreate.addEventListener('click', () => {
+      
+    })
+
+    backgoundCreateTask.append(titleCreateTask, fieldСategory, containerButton, buttonCreate);
     containerButton.append(
       buttonSportsCategory,
       buttonWorkCategory,
@@ -181,14 +202,37 @@ function createTask(buttonCreate) {
       buttonHobbyCategory
     );
 
-    pressingButton(
-      buttonSportsCategory,
-      buttonWorkCategory,
-      buttonEarningsCategory,
-      buttonRelationshipCategory,
-      buttonAccumulationCategory,
-      buttonHobbyCategory
-    );
+    let pressing = false;
+
+    buttonSportsCategory.addEventListener("click", () => {
+      pressing = true;
+      buttonSportsCategory.classList.add("border-white");
+    });
+
+    buttonWorkCategory.addEventListener("click", () => {
+      pressing = true;
+      buttonWorkCategory.classList.add("border-white");
+    });
+
+    buttonEarningsCategory.addEventListener("click", () => {
+      pressing = true;
+      buttonEarningsCategory.classList.add("border-white");
+    });
+
+    buttonRelationshipCategory.addEventListener("click", () => {
+      pressing = true;
+      buttonRelationshipCategory.classList.add("border-white");
+    });
+
+    buttonAccumulationCategory.addEventListener("click", () => {
+      pressing = true;
+      buttonAccumulationCategory.classList.add("border-white");
+    });
+
+    buttonHobbyCategory.addEventListener("click", () => {
+      pressing = true;
+      buttonHobbyCategory.classList.add("border-white");
+    });
   });
 }
 
