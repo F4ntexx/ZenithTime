@@ -13,7 +13,7 @@ createTaskButton.addEventListener(
   () => {
     const titleTaskSection = document.createElement("p");
     titleTaskSection.textContent =
-      "Начните свою цель с маленького напоминания!";
+      userData.nickname + " Начните свою цель с маленького напоминания!";
     titleTaskSection.classList.add(
       "text-white",
       "text-3xl",
@@ -79,7 +79,116 @@ function createTask(buttonCreate) {
     fieldСategory.textContent = "Добавить категорию:";
     fieldСategory.classList.add("text-white", "text-medium", "text-md", "mx-2");
 
-    backgoundCreateTask.append(titleCreateTask, fieldСategory);
+    const containerButton = document.createElement("div");
+    containerButton.classList.add("flex", "gap-3", "flex-wrap");
+
+    const buttonSportsCategory = document.createElement("button");
+    buttonSportsCategory.type = "button";
+    buttonSportsCategory.textContent = "Спорт";
+    buttonSportsCategory.classList.add(
+      "h-7",
+      "w-25",
+      "rounded-sm",
+      "border-slate-800",
+      "border-2",
+      "text-white",
+      "cursor-pointer",
+      "ml-2"
+    );
+
+    const buttonWorkCategory = document.createElement("button");
+    buttonWorkCategory.type = "button";
+    buttonWorkCategory.textContent = "Работа";
+    buttonWorkCategory.classList.add(
+      "h-7",
+      "w-25",
+      "rounded-sm",
+      "border-slate-800",
+      "border-2",
+      "text-white",
+      "cursor-pointer"
+    );
+
+    const buttonEarningsCategory = document.createElement("button");
+    buttonEarningsCategory.type = "button";
+    buttonEarningsCategory.textContent = "Заработок";
+    buttonEarningsCategory.classList.add(
+      "h-7",
+      "w-25",
+      "rounded-sm",
+      "border-slate-800",
+      "border-2",
+      "text-white",
+      "cursor-pointer"
+    );
+
+    const buttonRelationshipCategory = document.createElement("button");
+    buttonRelationshipCategory.type = "button";
+    buttonRelationshipCategory.textContent = "Отношения";
+    buttonRelationshipCategory.classList.add(
+      "h-7",
+      "w-25",
+      "rounded-sm",
+      "border-slate-800",
+      "border-2",
+      "text-white",
+      "cursor-pointer"
+    );
+
+    const buttonAccumulationCategory = document.createElement("button");
+    buttonAccumulationCategory.type = "button";
+    buttonAccumulationCategory.textContent = "Накопления";
+    buttonAccumulationCategory.classList.add(
+      "h-7",
+      "w-25",
+      "rounded-sm",
+      "border-slate-800",
+      "border-2",
+      "text-white",
+      "cursor-pointer",
+      "ml-2"
+    );
+
+    const buttonHobbyCategory = document.createElement("button");
+    buttonHobbyCategory.type = "button";
+    buttonHobbyCategory.textContent = "Хобби";
+    buttonHobbyCategory.classList.add(
+      "h-7",
+      "w-25",
+      "rounded-sm",
+      "border-slate-800",
+      "border-2",
+      "text-white",
+      "cursor-pointer"
+    );
+
+    const buttonGroup = [
+      buttonSportsCategory,
+      buttonWorkCategory,
+      buttonEarningsCategory,
+      buttonRelationshipCategory,
+      buttonAccumulationCategory,
+      buttonHobbyCategory,
+    ];
+
+    backgoundCreateTask.append(titleCreateTask, fieldСategory, containerButton);
+    containerButton.append(
+      buttonSportsCategory,
+      buttonWorkCategory,
+      buttonEarningsCategory,
+      buttonRelationshipCategory,
+      buttonAccumulationCategory,
+      buttonHobbyCategory
+    );
+
+    pressingButton(
+      buttonSportsCategory,
+      buttonWorkCategory,
+      buttonEarningsCategory,
+      buttonRelationshipCategory,
+      buttonAccumulationCategory,
+      buttonHobbyCategory
+    );
   });
 }
 
