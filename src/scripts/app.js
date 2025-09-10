@@ -176,7 +176,7 @@ function createTask(buttonCreate) {
       buttonHobbyCategory,
     ];
 
-    const buttonCreate = document.createElement('button');
+    const buttonCreate = document.createElement("button");
     buttonCreate.type = "button";
     buttonCreate.textContent = "Cоздать";
     buttonCreate.classList.add(
@@ -186,13 +186,14 @@ function createTask(buttonCreate) {
       "cursor-pointer",
       "ml-2",
       "rounded-sm"
-    )
+    );
 
-    buttonCreate.addEventListener('click', () => {
-      
-    })
-
-    backgoundCreateTask.append(titleCreateTask, fieldСategory, containerButton, buttonCreate);
+    backgoundCreateTask.append(
+      titleCreateTask,
+      fieldСategory,
+      containerButton,
+      buttonCreate
+    );
     containerButton.append(
       buttonSportsCategory,
       buttonWorkCategory,
@@ -232,6 +233,12 @@ function createTask(buttonCreate) {
     buttonHobbyCategory.addEventListener("click", () => {
       pressing = true;
       buttonHobbyCategory.classList.add("border-white");
+    });
+
+    buttonCreate.addEventListener("click", () => {
+      buttonGroup.forEach((element,index) => {
+        console.log(element.classList.contains('border-white'),index);
+      });
     });
   });
 }
