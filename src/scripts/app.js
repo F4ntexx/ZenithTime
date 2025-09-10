@@ -236,8 +236,8 @@ function createTask(buttonCreate) {
     });
 
     buttonCreate.addEventListener("click", () => {
-      buttonGroup.forEach((element,index) => {
-        console.log(element.classList.contains('border-white'),index);
+      buttonGroup.forEach((element, index) => {
+       element.classList.contains("border-white"), index;
       });
     });
   });
