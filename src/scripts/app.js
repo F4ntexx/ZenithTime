@@ -304,45 +304,17 @@ function createTask(buttonCreate) {
     );
     containerButtons.append(buttonCreate, buttonCancel);
 
-    let pressing = false;
-
-    buttonSportsCategory.addEventListener("click", () => {
-      pressing = true;
-      buttonSportsCategory.classList.add("border-white");
-    });
-
-    buttonWorkCategory.addEventListener("click", () => {
-      pressing = true;
-      buttonWorkCategory.classList.add("border-white");
-    });
-
-    buttonEarningsCategory.addEventListener("click", () => {
-      pressing = true;
-      buttonEarningsCategory.classList.add("border-white");
-    });
-
-    buttonRelationshipCategory.addEventListener("click", () => {
-      pressing = true;
-      buttonRelationshipCategory.classList.add("border-white");
-    });
-
-    buttonAccumulationCategory.addEventListener("click", () => {
-      pressing = true;
-      buttonAccumulationCategory.classList.add("border-white");
-    });
-
-    buttonHobbyCategory.addEventListener("click", () => {
-      pressing = true;
-      buttonHobbyCategory.classList.add("border-white");
-    });
-
     buttonCreate.addEventListener("click", () => {
       buttonGroup.forEach((element, index) => {
         console.log(element.classList.contains("border-white"), index);
+          element.addEventListener("click", () => {
+            element.classList.add("border-white");
+          });
+        });
       });
     });
-  });
-}
+  }
+
 
 // profile
 profileButton.addEventListener(
