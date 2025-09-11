@@ -65,7 +65,9 @@ function createTask(buttonCreate) {
       "m-auto",
       "flex",
       "flex-col",
-      "gap-2"
+      "gap-2",
+      "shadow-lg",
+      "shadow-slate-950/90"
     );
 
     contentSection.append(backgoundCreateTask);
@@ -176,14 +178,104 @@ function createTask(buttonCreate) {
       buttonHobbyCategory,
     ];
 
+    const titleTodo = document.createElement("p");
+    titleTodo.textContent = "Название цели:";
+    titleTodo.classList.add("text-white", "text-medium", "text-md", "mx-2");
+
+    const fieldtitle = document.createElement("input");
+    fieldtitle.maxLength = 25;
+    fieldtitle.classList.add(
+      "wrap-break-word",
+      "max-w-50",
+      "border-slate-800",
+      "border-b-2",
+      "text-white",
+      "outline-none",
+      "ml-2"
+    );
+
+    const descriptionTodo = document.createElement("p");
+    descriptionTodo.textContent = "Описание:";
+    descriptionTodo.classList.add(
+      "text-white",
+      "text-medium",
+      "text-md",
+      "mx-2"
+    );
+
+    const fieldDescription = document.createElement("input");
+    fieldDescription.maxLength = 50;
+    fieldDescription.classList.add(
+      "wrap-break-word",
+      "max-w-110",
+      "border-slate-800",
+      "border-b-2",
+      "text-white",
+      "outline-none",
+      "ml-2"
+    );
+
+    const titleData = document.createElement("p");
+    titleData.textContent = "Дата выполнения:";
+    titleData.classList.add("text-white", "text-medium", "text-md", "mx-2");
+
+    const dataInput = document.createElement("input");
+    dataInput.type = "date";
+    dataInput.classList.add(
+      "max-w-30",
+      "border-slate-800",
+      "border-b-2",
+      "text-white",
+      "outline-none",
+      "ml-2"
+    );
+
+    const titleTime = document.createElement("p");
+    titleTime.textContent = "Дата выполнения:";
+    titleTime.classList.add("text-white", "text-medium", "text-md", "mx-2");
+
+    const timeInput = document.createElement("input");
+    timeInput.type = "time";
+    timeInput.classList.add(
+      "max-w-13",
+      "border-slate-800",
+      "border-b-2",
+      "text-white",
+      "outline-none",
+      "ml-2"
+    );
+
+    const containerButtons = document.createElement("div");
+    containerButtons.classList.add("flex", "flex-row", "gap-2");
+
     const buttonCreate = document.createElement("button");
     buttonCreate.type = "button";
     buttonCreate.textContent = "Cоздать";
     buttonCreate.classList.add(
       "h-7",
-      "w-30",
-      "bg-slate-200",
+      "w-25",
+      "bg-slate-500",
       "cursor-pointer",
+      "text-slate-800",
+      "text-l",
+      "font-bold",
+      "ml-2",
+      "rounded-sm",
+      "shadow-lg",
+      "shadow-white/7"
+    );
+    const buttonCancel = document.createElement("button");
+    buttonCancel.type = "button";
+    buttonCancel.textContent = "Отмена";
+    buttonCancel.classList.add(
+      "h-7",
+      "w-25",
+      "cursor-pointer",
+      "text-slate-300",
+      "border-slate-300",
+      "border-2",
+      "text-l",
+      "font-bold",
       "ml-2",
       "rounded-sm"
     );
@@ -192,7 +284,15 @@ function createTask(buttonCreate) {
       titleCreateTask,
       fieldСategory,
       containerButton,
-      buttonCreate
+      titleTodo,
+      fieldtitle,
+      descriptionTodo,
+      fieldDescription,
+      titleData,
+      dataInput,
+      titleTime,
+      timeInput,
+      containerButtons
     );
     containerButton.append(
       buttonSportsCategory,
@@ -202,6 +302,7 @@ function createTask(buttonCreate) {
       buttonAccumulationCategory,
       buttonHobbyCategory
     );
+    containerButtons.append(buttonCreate, buttonCancel);
 
     let pressing = false;
 
@@ -237,7 +338,7 @@ function createTask(buttonCreate) {
 
     buttonCreate.addEventListener("click", () => {
       buttonGroup.forEach((element, index) => {
-       element.classList.contains("border-white"), index;
+        console.log(element.classList.contains("border-white"), index);
       });
     });
   });
