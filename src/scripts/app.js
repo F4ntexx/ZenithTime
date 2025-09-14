@@ -231,7 +231,7 @@ function createTask(buttonCreate) {
     );
 
     const titleTime = document.createElement("p");
-    titleTime.textContent = "Дата выполнения:";
+    titleTime.textContent = "Время выполнения:";
     titleTime.classList.add("text-white", "text-medium", "text-md", "mx-2");
 
     const timeInput = document.createElement("input");
@@ -280,6 +280,23 @@ function createTask(buttonCreate) {
       "rounded-sm"
     );
 
+    buttonGroup.forEach((element, index) => {
+      element.addEventListener("click", () => {
+        element.classList.add("border-white");
+      });
+    });
+    buttonCreate.addEventListener("click", () => {
+      const valueTask = {
+        fieldDescription: fieldDescription.value,
+        fieldtitle: fieldtitle.value,
+        dataInput: dataInput.value,
+        timeInput: timeInput.value,
+      };
+      let a = JSON.stringify(valueTask);
+      let b = JSON.parse(a);
+      console.log(b);
+    });
+
     backgoundCreateTask.append(
       titleCreateTask,
       fieldСategory,
@@ -303,23 +320,15 @@ function createTask(buttonCreate) {
       buttonHobbyCategory
     );
     containerButtons.append(buttonCreate, buttonCancel);
-
-    buttonCreate.addEventListener("click", () => {
-      buttonGroup.forEach((element, index) => {
-        console.log(element.classList.contains("border-white"), index);
-          element.addEventListener("click", () => {
-            element.classList.add("border-white");
-          });
-        });
-      });
-    });
-  }
-
+  });
+}
 
 // profile
 profileButton.addEventListener(
   "click",
   () => {
+    contentSection.classList.add("flex", "justify-center", "items-center");
+
     const titleProfile = document.createElement("p");
     titleProfile.textContent = "Добро пожаловать в Ваш профиль!";
     titleProfile.classList.add("text-3xl", "text-white");
@@ -338,8 +347,7 @@ profileButton.addEventListener(
       "h-10",
       "rounded-md",
       "shadow-lg",
-      "text-white",
-      "pl-1"
+      "text-white"
     );
 
     const nicknameUser = userData.nickname;
@@ -359,8 +367,7 @@ profileButton.addEventListener(
       "h-10",
       "rounded-md",
       "shadow-lg",
-      "text-white",
-      "pl-1"
+      "text-white"
     );
 
     const emailUser = userData.email;
@@ -380,8 +387,7 @@ profileButton.addEventListener(
       "h-10",
       "rounded-md",
       "shadow-lg",
-      "text-white",
-      "pl-1"
+      "text-white"
     );
 
     const passwordUser = userData.password;
