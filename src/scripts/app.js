@@ -280,15 +280,30 @@ function createTask(buttonCreate) {
       "rounded-sm"
     );
 
+    let sortedButtons = [];
     buttonGroup.forEach((element, index) => {
       element.addEventListener("click", () => {
         element.classList.add("border-white");
+        sortedButtons.push(index);
       });
     });
+
+    function formatDate() {
+      let date = new Date();
+      let day = String(date.getDate()).padStart(2, "0");
+      let month = String(date.getMonth() + 1).padStart(2, "0");
+      let year = date.getFullYear();
+
+      return `${year}-${month}-${day}`;
+    }
+
+    dataInput.min = formatDate();
+
     buttonCreate.addEventListener("click", () => {
       const valueTask = {
-        fieldDescription: fieldDescription.value,
+        buttonCategory: sortedButtons,
         fieldtitle: fieldtitle.value,
+        fieldDescription: fieldDescription.value,
         dataInput: dataInput.value,
         timeInput: timeInput.value,
       };
