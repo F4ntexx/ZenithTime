@@ -47,44 +47,34 @@ form.addEventListener("submit", (e) => {
     }
 
     const keysArray = Object.keys(dataJSONform);
-    if (keysArray.includes("nickname")) {
-      if (nickname != "") {
-        dataJSONform.nickname = nicknameValue;
-      }
-    }
 
-    if (keysArray.includes("email")) {
-      if (email != " ") {
-        dataJSONform.email = emailValue;
+    if (keysArray.length < 3) {
+      console.log('The user has filled in the data incorrectly');
+    } else {
+              sendingData()
+      function sendingData() {
+        fetch("http://localhost:5000/users", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(dataJSONform),
+        }).then((Response) => {
+          if (Response.ok) {
+            window.location.href = "/src/page/app.html";
+          } else {
+            console.log("Error runtime sendling ", Response.status);
+          }
+        });
+        (Response) =>
+          Response.json()
+            .catch((error) => {
+              console.log("Ошибка ввода", error);
+            })
+            .then((Response) => console.log(Response));
+        const lst = localStorage.setItem("user", JSON.stringify(dataJSONform));
       }
     }
-
-    if (keysArray.includes("password")) {
-      if (password != " ") {
-        dataJSONform.password = passwordValue;
-      }
-      fetch("http://localhost:5000/users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(dataJSONform),
-      }).then((Response) => {
-        if (Response.ok) {
-          window.location.href = "/src/page/app.html";
-        } else {
-          console.log("Error runtime sendling ", Response.status);
-        }
-      });
-      (Response) =>
-        Response.json()
-          .catch((error) => {
-            console.log("Ошибка ввода", error);
-          })
-          .then((Response) => console.log(Response));
-    }
-    const lst = localStorage.setItem("user", JSON.stringify(dataJSONform));
   }
-
   ValidateForm();
 });
