@@ -300,6 +300,36 @@ function createTask(buttonCreate) {
     dataInput.min = formatDate();
 
     buttonCreate.addEventListener("click", () => {
+      if (sortedButtons.length == 0) {
+        new Notification("Ошибка", {
+          body: "Добавьте хотя бы одну категорию!",
+          icon: "/src/assets/images/logoApp.png",
+        });
+        return;
+      }
+      if (fieldtitle.value.trim() == "") {
+        new Notification("Ошибка", {
+          body: "Введите пожалуйста название вашей цели!",
+          icon: "/src/assets/images/logoApp.png",
+        });
+        return;
+      }
+      if (fieldDescription.value.trim() == "") {
+        new Notification("Ошибка!", {
+          body: "Введите пожалуйста описание цели!",
+          icon: "/src/assets/images/logoApp.png",
+        });
+        return;
+      }
+
+      if (dataInput.value < formatDate()) {
+        new Notification("Ошибка!", {
+          body: "Проверьте коректность даты!",
+          icon: "/src/assets/images/logoApp.png",
+        });
+        return;
+      }
+
       const valueTask = {
         buttonCategory: sortedButtons,
         fieldtitle: fieldtitle.value,
@@ -307,9 +337,10 @@ function createTask(buttonCreate) {
         dataInput: dataInput.value,
         timeInput: timeInput.value,
       };
-      let a = JSON.stringify(valueTask);
-      let b = JSON.parse(a);
-      console.log(b);
+
+      let valueTaskData = JSON.stringify(valueTask);
+
+      const vr = localStorage.setItem("task", valueTaskData)
     });
 
     backgoundCreateTask.append(
