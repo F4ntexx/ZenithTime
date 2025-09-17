@@ -13,6 +13,8 @@ logotypeApp.addEventListener("click", () => {
   location.href = "";
 });
 
+// task
+
 createTaskButton.addEventListener(
   "click",
   () => {
@@ -332,7 +334,7 @@ function createTask(buttonCreate) {
 
       const valueTask = {
         buttonCategory: sortedButtons,
-        fieldtitle: fieldtitle.value,
+        fieldTitle: fieldtitle.value,
         fieldDescription: fieldDescription.value,
         dataInput: dataInput.value,
         timeInput: timeInput.value,
@@ -340,7 +342,7 @@ function createTask(buttonCreate) {
 
       let valueTaskData = JSON.stringify(valueTask);
 
-      const vr = localStorage.setItem("task", valueTaskData)
+      const vr = localStorage.setItem("task", valueTaskData);
     });
 
     backgoundCreateTask.append(
@@ -368,6 +370,116 @@ function createTask(buttonCreate) {
     containerButtons.append(buttonCreate, buttonCancel);
   });
 }
+
+// tasklistbtn
+taskListButton.addEventListener(
+  "click",
+  () => {
+    const taskOne = localStorage.getItem("task");
+    const taskGroup = [];
+    taskGroup.push(taskOne);
+    if (taskGroup.length > 0) {
+      createOneItem();
+
+      function createOneItem() {
+        const getTask = localStorage.getItem("task");
+        const valueGetTask = JSON.parse(getTask);
+        const captionTask = valueGetTask.fieldtitle;
+        const directionTask = valueGetTask.fieldDescription;
+        const dateTask = valueGetTask.dataInput;
+        const periodTask = valueGetTask.timeInput;
+
+        const buttonSport = document.createElement("button");
+        const buttonWork = document.createElement("button");
+        const buttonIncome = document.createElement("button");
+        const buttonRelationship = document.createElement("button");
+        const buttonStorage = document.createElement("button");
+        const buttonInterest = document.createElement("button");
+
+        const buttonTaskGroup = [
+          buttonSport,
+          buttonWork,
+          buttonIncome,
+          buttonRelationship,
+          buttonStorage,
+          buttonInterest,
+        ];
+
+        const objectButton = {
+          0: buttonSport,
+          1: buttonWork,
+          2: buttonIncome,
+          3: buttonRelationship,
+          4: buttonStorage,
+          5: buttonInterest,
+        };
+
+        const backgroundTaskGroup = document.createElement("div");
+        backgroundTaskGroup.classList.add(
+          "flex",
+          "flex-col",
+          "gap-5",
+          "max-w",
+          "h-162",
+          "m-10"
+        );
+
+        contentSection.append(backgroundTaskGroup);
+
+        const taskOneBackground = document.createElement("div");
+        taskOneBackground.classList.add(
+          "flex",
+          "flex-col",
+          "gap-2",
+          "w-100",
+          "h-100",
+          "p-2",
+          "bg-slate-900",
+          "rounded-xl",
+          "shadow-lg"
+        );
+        const titleTask = document.createElement("p");
+        titleTask.textContent = captionTask;
+        titleTask.classList.add("text-white", "text-2xl", "font-semibold");
+
+        const descriptionTask = document.createElement("p");
+        descriptionTask.textContent = directionTask;
+        descriptionTask.classList.add("text-white", "text-xl", "fond-medium");
+
+        const dataTask = document.createElement("p");
+        dataTask.textContent = dateTask;
+        dataTask.classList.add("text-white", "text-2xl");
+
+        const timeTask = document.createElement("p");
+        timeTask.textContent = periodTask;
+        timeTask.classList.add("text-white", "text-2xl");
+
+        backgroundTaskGroup.append(taskOneBackground);
+        taskOneBackground.append(
+          titleTask,
+          descriptionTask,
+          dataTask,
+          timeTask,
+        );
+      }
+    } else {
+      const titleTaskList = document.createElement("div");
+      titleTaskList.textContent = "Вы не создали задачу!";
+      titleTaskList.classList.add(
+        "text-white",
+        "flex",
+        "justify-center",
+        "font-semibold",
+        "text-3xl",
+        "mt-60"
+      );
+
+      contentSection.append(titleTaskList);
+      return;
+    }
+  },
+  { once: true }
+);
 
 // profile
 profileButton.addEventListener(
