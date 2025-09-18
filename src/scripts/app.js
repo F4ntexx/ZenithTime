@@ -342,7 +342,7 @@ function createTask(buttonCreate) {
 
       let valueTaskData = JSON.stringify(valueTask);
 
-      const vr = localStorage.setItem("task", valueTaskData);
+      const createTask = localStorage.setItem("task", valueTaskData);
     });
 
     backgoundCreateTask.append(
@@ -372,115 +372,132 @@ function createTask(buttonCreate) {
 }
 
 // tasklistbtn
-taskListButton.addEventListener(
-  "click",
-  () => {
-    const taskOne = localStorage.getItem("task");
-    const taskGroup = [];
-    taskGroup.push(taskOne);
-    if (taskGroup.length > 0) {
-      createOneItem();
+taskListButton.addEventListener("click", aa);
 
-      function createOneItem() {
-        const getTask = localStorage.getItem("task");
-        const valueGetTask = JSON.parse(getTask);
-        const captionTask = valueGetTask.fieldtitle;
-        const directionTask = valueGetTask.fieldDescription;
-        const dateTask = valueGetTask.dataInput;
-        const periodTask = valueGetTask.timeInput;
+function aa() {
+  const taskOne = localStorage.getItem("task");
+  const taskGroup = [];
+  taskGroup.push(taskOne);
+  if (taskGroup.length > 0) {
+    function createOneItem() {
+      const getTask = localStorage.getItem("task");
+      const valueGetTask = JSON.parse(getTask);
+      const captionTask = valueGetTask.fieldTitle;
+      const directionTask = valueGetTask.fieldDescription;
+      const dateTaskLocalSt = valueGetTask.dataInput;
+      const periodTask = valueGetTask.timeInput;
 
-        const buttonSport = document.createElement("button");
-        const buttonWork = document.createElement("button");
-        const buttonIncome = document.createElement("button");
-        const buttonRelationship = document.createElement("button");
-        const buttonStorage = document.createElement("button");
-        const buttonInterest = document.createElement("button");
+      NotificationTask(periodTask, dateTaskLocalSt, captionTask, directionTask);
 
-        const buttonTaskGroup = [
-          buttonSport,
-          buttonWork,
-          buttonIncome,
-          buttonRelationship,
-          buttonStorage,
-          buttonInterest,
-        ];
+      const buttonSport = document.createElement("button");
+      const buttonWork = document.createElement("button");
+      const buttonIncome = document.createElement("button");
+      const buttonRelationship = document.createElement("button");
+      const buttonStorage = document.createElement("button");
+      const buttonInterest = document.createElement("button");
 
-        const objectButton = {
-          0: buttonSport,
-          1: buttonWork,
-          2: buttonIncome,
-          3: buttonRelationship,
-          4: buttonStorage,
-          5: buttonInterest,
-        };
+      const buttonTaskGroup = [
+        buttonSport,
+        buttonWork,
+        buttonIncome,
+        buttonRelationship,
+        buttonStorage,
+        buttonInterest,
+      ];
 
-        const backgroundTaskGroup = document.createElement("div");
-        backgroundTaskGroup.classList.add(
-          "flex",
-          "flex-col",
-          "gap-5",
-          "max-w",
-          "h-162",
-          "m-10"
-        );
+      const objectButton = {
+        0: buttonSport,
+        1: buttonWork,
+        2: buttonIncome,
+        3: buttonRelationship,
+        4: buttonStorage,
+        5: buttonInterest,
+      };
 
-        contentSection.append(backgroundTaskGroup);
-
-        const taskOneBackground = document.createElement("div");
-        taskOneBackground.classList.add(
-          "flex",
-          "flex-col",
-          "gap-2",
-          "w-100",
-          "h-100",
-          "p-2",
-          "bg-slate-900",
-          "rounded-xl",
-          "shadow-lg"
-        );
-        const titleTask = document.createElement("p");
-        titleTask.textContent = captionTask;
-        titleTask.classList.add("text-white", "text-2xl", "font-semibold");
-
-        const descriptionTask = document.createElement("p");
-        descriptionTask.textContent = directionTask;
-        descriptionTask.classList.add("text-white", "text-xl", "fond-medium");
-
-        const dataTask = document.createElement("p");
-        dataTask.textContent = dateTask;
-        dataTask.classList.add("text-white", "text-2xl");
-
-        const timeTask = document.createElement("p");
-        timeTask.textContent = periodTask;
-        timeTask.classList.add("text-white", "text-2xl");
-
-        backgroundTaskGroup.append(taskOneBackground);
-        taskOneBackground.append(
-          titleTask,
-          descriptionTask,
-          dataTask,
-          timeTask,
-        );
-      }
-    } else {
-      const titleTaskList = document.createElement("div");
-      titleTaskList.textContent = "Вы не создали задачу!";
-      titleTaskList.classList.add(
-        "text-white",
+      const backgroundTaskGroup = document.createElement("div");
+      backgroundTaskGroup.classList.add(
         "flex",
-        "justify-center",
-        "font-semibold",
-        "text-3xl",
-        "mt-60"
+        "flex-col",
+        "gap-5",
+        "max-w",
+        "h-162",
+        "m-10"
       );
 
-      contentSection.append(titleTaskList);
-      return;
-    }
-  },
-  { once: true }
-);
+      contentSection.append(backgroundTaskGroup);
 
+      const taskOneBackground = document.createElement("div");
+      taskOneBackground.classList.add(
+        "flex",
+        "flex-col",
+        "gap-2",
+        "w-100",
+        "h-100",
+        "p-2",
+        "bg-slate-900",
+        "rounded-xl",
+        "shadow-lg"
+      );
+      const titleTask = document.createElement("p");
+      titleTask.textContent = captionTask;
+      titleTask.classList.add("text-white", "text-2xl", "font-semibold");
+
+      const descriptionTask = document.createElement("p");
+      descriptionTask.textContent = directionTask;
+      descriptionTask.classList.add("text-white", "text-xl", "fond-medium");
+
+      const dataTask = document.createElement("p");
+      dataTask.textContent = dateTaskLocalSt;
+      dataTask.classList.add("text-white", "text-2xl");
+
+      const timeTask = document.createElement("p");
+      timeTask.textContent = periodTask;
+      timeTask.classList.add("text-white", "text-2xl");
+
+      backgroundTaskGroup.append(taskOneBackground);
+      taskOneBackground.append(titleTask, descriptionTask, dataTask, timeTask);
+    }
+    createOneItem();
+  } else {
+    const titleTaskList = document.createElement("div");
+    titleTaskList.textContent = "Вы не создали задачу!";
+    titleTaskList.classList.add(
+      "text-white",
+      "flex",
+      "justify-center",
+      "font-semibold",
+      "text-3xl",
+      "mt-60"
+    );
+
+    contentSection.append(titleTaskList);
+    return;
+  }
+}
+
+function NotificationTask(
+  periodTask,
+  dateTaskLocalSt,
+  captionTask,
+  directionTask
+) {
+  const myDate = new Date();
+  const dateUser = myDate.toISOString().split("T")[0];
+  const timeString = myDate.toLocaleTimeString("ru-RU", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  });
+  while (timeString == periodTask && dateUser == dateTaskLocalSt) {
+    new Notification(captionTask, {
+      body: directionTask,
+      icon: "/src/assets/svg/notification-bell-svgrepo-com.svg",
+    });
+    break;
+  }
+}
+
+NotificationTask();
 // profile
 profileButton.addEventListener(
   "click",
