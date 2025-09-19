@@ -384,7 +384,6 @@ taskListButton.addEventListener(
     taskGroup.push(taskOne);
     console.log(taskGroup);
     if (taskGroup[0] !== null) {
-      //
       function createOneItem() {
         const getTask = localStorage.getItem("task");
         const valueGetTask = JSON.parse(getTask);
@@ -485,29 +484,6 @@ taskListButton.addEventListener(
   },
   { once: true }
 );
-
-function NotificationTask(
-  periodTask,
-  dateTaskLocalSt,
-  captionTask,
-  directionTask
-) {
-  const myDate = new Date();
-  const dateUser = myDate.toISOString().split("T")[0];
-  const timeString = myDate.toLocaleTimeString("ru-RU", {
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false,
-  });
-  while (timeString == periodTask && dateUser == dateTaskLocalSt) {
-    new Notification(captionTask, {
-      body: directionTask,
-      icon: "/src/assets/svg/notification-bell-svgrepo-com.svg",
-    });
-    localStorage.removeItem("task");
-    break;
-  }
-}
 
 // profile
 profileButton.addEventListener(
@@ -642,3 +618,29 @@ function editForm(buttonEditing, inputNickname, inputEmail, inputPassword) {
     }
   });
 }
+
+function NotificationTask() {
+  const gtv = JSON.parse(localStorage.getItem("task"));
+  const ttle = gtv.fieldTitle;
+  const drtTask = gtv.fieldDescription;
+  const prdTask = gtv.timeInput;
+  const dtlst = gtv.dataInput;
+
+  const myDate = new Date();
+  const dateUser = myDate.toISOString().split("T")[0];
+  const timeString = myDate.toLocaleTimeString("ru-RU", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  });
+  while (timeString == prdTask && dateUser == dtlst) {
+    new Notification(ttle, {
+      body: drtTask,
+      icon: "/src/assets/svg/notification-bell-svgrepo-com.svg",
+    });
+    localStorage.removeItem("task");
+    break;
+  }
+}
+
+setInterval(NotificationTask, 2000);
