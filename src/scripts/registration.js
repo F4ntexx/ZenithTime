@@ -49,9 +49,9 @@ form.addEventListener("submit", (e) => {
     const keysArray = Object.keys(dataJSONform);
 
     if (keysArray.length < 3) {
-      console.log('The user has filled in the data incorrectly');
+      console.log("The user has filled in the data incorrectly");
     } else {
-              sendingData()
+      sendingData();
       function sendingData() {
         fetch("http://localhost:5000/users", {
           method: "POST",
