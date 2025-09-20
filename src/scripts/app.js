@@ -382,7 +382,6 @@ taskListButton.addEventListener(
     const taskOne = localStorage.getItem("task");
     const taskGroup = [];
     taskGroup.push(taskOne);
-    console.log(taskGroup);
     if (taskGroup[0] !== null) {
       function createOneItem() {
         const getTask = localStorage.getItem("task");
@@ -465,6 +464,7 @@ taskListButton.addEventListener(
           timeTask
         );
       }
+
       createOneItem();
       return;
     } else {
@@ -485,6 +485,39 @@ taskListButton.addEventListener(
   { once: true }
 );
 
+if (localStorage.getItem("task")) {
+  const interValid = setInterval(NotificationTask, 2000);
+
+  function stopInterValid() {
+    clearInterval(interValid);
+  }
+
+  function NotificationTask() {
+    const gtv = JSON.parse(localStorage.getItem("task"));
+    const ttle = gtv.fieldTitle;
+    const drtTask = gtv.fieldDescription;
+    const prdTask = gtv.timeInput;
+    const dtlst = gtv.dataInput;
+
+    const myDate = new Date();
+    const dateUser = myDate.toISOString().split("T")[0];
+    const timeString = myDate.toLocaleTimeString("ru-RU", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+    });
+    while (timeString == prdTask && dateUser == dtlst) {
+      new Notification(ttle, {
+        body: drtTask,
+        icon: "/src/assets/svg/notification-bell-svgrepo-com.svg",
+      });
+      localStorage.removeItem("task");
+      stopInterValid();
+      break;
+    }
+    return;
+  }
+}
 // profile
 profileButton.addEventListener(
   "click",
@@ -618,29 +651,3 @@ function editForm(buttonEditing, inputNickname, inputEmail, inputPassword) {
     }
   });
 }
-
-function NotificationTask() {
-  const gtv = JSON.parse(localStorage.getItem("task"));
-  const ttle = gtv.fieldTitle;
-  const drtTask = gtv.fieldDescription;
-  const prdTask = gtv.timeInput;
-  const dtlst = gtv.dataInput;
-
-  const myDate = new Date();
-  const dateUser = myDate.toISOString().split("T")[0];
-  const timeString = myDate.toLocaleTimeString("ru-RU", {
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false,
-  });
-  while (timeString == prdTask && dateUser == dtlst) {
-    new Notification(ttle, {
-      body: drtTask,
-      icon: "/src/assets/svg/notification-bell-svgrepo-com.svg",
-    });
-    localStorage.removeItem("task");
-    break;
-  }
-}
-
-setInterval(NotificationTask, 2000);
