@@ -440,6 +440,10 @@ taskListButton.addEventListener(
           "rounded-xl",
           "shadow-lg"
         );
+        const numberTask = document.createElement("p");
+        numberTask.textContent = "Задача: 1";
+        numberTask.classList.add("text-white", "text-2xl", "font-semibold");
+
         const titleTask = document.createElement("p");
         titleTask.textContent = captionTask;
         titleTask.classList.add("text-white", "text-2xl", "font-semibold");
@@ -456,13 +460,45 @@ taskListButton.addEventListener(
         timeTask.textContent = periodTask;
         timeTask.classList.add("text-white", "text-2xl");
 
+        const titleOver = document.createElement("div");
+        titleOver.textContent = "Закончили задачу раньше?";
+        titleOver.classList.add(
+          "text-white",
+          "text-xl",
+          "fond-medium",
+          "flex",
+          "gap-5"
+        );
+
+        const confirmationСheckbox = document.createElement("input");
+        confirmationСheckbox.type = "checkbox";
+        confirmationСheckbox.classList.add("text-start", "mt-1");
+
+        confirmationСheckbox.addEventListener("change", () => {
+          const completedData = {
+            completedCaptionTask: captionTask,
+            completedDirectionTask: directionTask,
+            completedDateTaskLocalS: dateTaskLocalSt,
+          };
+          console.log(completedData);
+          const completedTask = localStorage.setItem(
+            "completedTask",
+            JSON.stringify(completedData)
+          );
+          localStorage.removeItem("task");
+          location.href = "";
+        });
+
         backgroundTaskGroup.append(taskOneBackground);
         taskOneBackground.append(
+          numberTask,
           titleTask,
           descriptionTask,
           dataTask,
-          timeTask
+          timeTask,
+          titleOver
         );
+        titleOver.append(confirmationСheckbox);
       }
 
       createOneItem();
