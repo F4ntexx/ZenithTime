@@ -478,7 +478,7 @@ taskListButton.addEventListener(
           const completedData = {
             completedCaptionTask: captionTask,
             completedDirectionTask: directionTask,
-            completedDateTaskLocalS: dateTaskLocalSt,
+            completedDateTaskLocalSt: dateTaskLocalSt,
           };
           console.log(completedData);
           const completedTask = localStorage.setItem(
@@ -554,6 +554,45 @@ if (localStorage.getItem("task")) {
     return;
   }
 }
+// completed
+completedButton.addEventListener("click", () => {
+  const dateCompletedTask = JSON.parse(localStorage.getItem("completedTask"));
+
+  const completedBackground = document.createElement("div");
+  completedBackground.classList.add(
+    "flex",
+    "flex-col",
+    "gap-5",
+    "max-w",
+    "h-162",
+    "m-10"
+  );
+  const completedTaskOne = document.createElement("div");
+  completedTaskOne.classList.add(
+    "flex",
+    "flex-col",
+    "gap-2",
+    "w-100",
+    "h-50",
+    "p-2",
+    "bg-slate-900",
+    "rounded-xl",
+    "shadow-lg"
+  );
+
+  const completedTitle = document.createElement("p");
+  completedTitle.textContent = dateCompletedTask.completedCaptionTask;
+
+  const completedDirection = document.createElement("p");
+  completedDirection.textContent = dateCompletedTask.completedDirectionTask;
+
+  const completedDate = document.createElement("p");
+  completedDate.textContent = dateCompletedTask.completedDateTaskLocalSt;
+
+  contentSection.append(completedBackground);
+  completedBackground.append(completedTaskOne);
+  completedTaskOne.append(completedTitle, completedDirection, completedDate);
+});
 // profile
 profileButton.addEventListener(
   "click",
