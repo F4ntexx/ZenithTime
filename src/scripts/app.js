@@ -332,21 +332,47 @@ function createTask(buttonCreate) {
         return;
       }
 
-      const valueTask = {
-        buttonCategory: sortedButtons,
-        fieldTitle: fieldtitle.value,
-        fieldDescription: fieldDescription.value,
-        dataInput: dataInput.value,
-        timeInput: timeInput.value,
-      };
+      if (createTask == "") {
+        const valueTask = {};
+        valueTask.buttonCategory = sortedButtons;
+        valueTask.fieldTitle = fieldtitle.value;
+        valueTask.fieldDescription = fieldDescription.value;
+        valueTask.dataInput = dataInput.value;
+        valueTask.timeInput = timeInput.value;
 
-      let valueTaskData = JSON.stringify(valueTask);
+        const createTaskOne = localStorage.setItem(
+          "task",
+          JSON.stringify(valueTask)
+        );
+      }
+      if (createTask != "") {
+        const valueTaskTwo = {};
+        valueTaskTwo.buttonCategory = sortedButtons;
+        valueTaskTwo.fieldTitle = fieldtitle.value;
+        valueTaskTwo.fieldDescription = fieldDescription.value;
+        valueTaskTwo.dataInput = dataInput.value;
+        valueTaskTwo.timeInput = timeInput.value;
 
-      const createTaskOne = localStorage.setItem("task", valueTaskData);
+        const createTaskOne = localStorage.setItem(
+          "task",
+          JSON.stringify(valueTaskTwo)
+        );
+        return;
+      } else {
+        console.log("bbb");
+      }
+
       new Notification("Успешно!", {
         body: "Вы создали задачу!",
         icon: "/src/assets/svg/check-mark-circle-svgrepo-com.svg",
       });
+      // setTimeout(() => {
+      //   location.href = "";
+      // }, 3000);
+    });
+
+    buttonCancel.addEventListener("click", () => {
+      location.href = "";
     });
 
     backgoundCreateTask.append(
