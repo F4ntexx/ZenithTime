@@ -18,38 +18,46 @@ logotypeApp.addEventListener("click", () => {
 createTaskButton.addEventListener(
   "click",
   () => {
-    const titleTaskSection = document.createElement("p");
-    titleTaskSection.textContent =
-      userData.nickname + " Начните свою цель с маленького напоминания!";
-    titleTaskSection.classList.add(
-      "text-white",
-      "text-3xl",
-      "font-medium",
-      "text-center",
-      "mt-20"
-    );
+    function aara() {
+      const titleTaskSection = document.createElement("p");
+      titleTaskSection.textContent =
+        userData.nickname + " Начните свою цель с маленького напоминания!";
+      titleTaskSection.classList.add(
+        "text-white",
+        "text-3xl",
+        "font-medium",
+        "text-center",
+        "mt-20"
+      );
 
-    const buttonCreate = document.createElement("button");
-    buttonCreate.textContent = "Создать";
-    buttonCreate.type = "button";
-    buttonCreate.classList.add(
-      "border-2",
-      "border-slate-900",
-      "bg-slate-900",
-      "hover:bg-slate-800",
-      "hover:border-slate-800",
-      "rounded-sm",
-      "h-10",
-      "w-80",
-      "text-2xl",
-      "cursor-pointer",
-      "text-white",
-      "font-semibold",
-      "m-auto"
-    );
+      const buttonCreate = document.createElement("button");
+      buttonCreate.textContent = "Создать";
+      buttonCreate.type = "button";
+      buttonCreate.classList.add(
+        "border-2",
+        "border-slate-900",
+        "bg-slate-900",
+        "hover:bg-slate-800",
+        "hover:border-slate-800",
+        "rounded-sm",
+        "h-10",
+        "w-80",
+        "text-2xl",
+        "cursor-pointer",
+        "text-white",
+        "font-semibold",
+        "m-auto"
+      );
 
-    contentSection.append(titleTaskSection, buttonCreate);
-    createTask(buttonCreate, titleTaskSection);
+      contentSection.append(titleTaskSection, buttonCreate);
+      createTask(buttonCreate, titleTaskSection);
+    }
+    if (contentSection.children.length > 0) {
+      contentSection.innerHTML = "";
+      aara();
+    } else {
+      aara();
+    }
   },
   { once: true }
 );
