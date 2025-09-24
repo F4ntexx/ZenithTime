@@ -302,21 +302,21 @@ function createTask(buttonCreate) {
       if (sortedButtons.length == 0) {
         new Notification("Ошибка", {
           body: "Добавьте хотя бы одну категорию!",
-          icon: "/src/assets/images/logoApp.png",
+          icon: "/src/assets/svg/error-svgrepo-com.svg",
         });
         return;
       }
       if (fieldtitle.value.trim() == "") {
         new Notification("Ошибка", {
           body: "Введите пожалуйста название вашей цели!",
-          icon: "/src/assets/images/logoApp.png",
+          icon: "/src/assets/svg/error-svgrepo-com.svg",
         });
         return;
       }
       if (fieldDescription.value.trim() == "") {
         new Notification("Ошибка!", {
           body: "Введите пожалуйста описание цели!",
-          icon: "/src/assets/images/logoApp.png",
+          icon: "/src/assets/svg/error-svgrepo-com.svg",
         });
         return;
       }
@@ -324,7 +324,7 @@ function createTask(buttonCreate) {
       if (dataInput.value < formatDate()) {
         new Notification("Ошибка!", {
           body: "Проверьте коректность даты!",
-          icon: "/src/assets/images/logoApp.png",
+          icon: "/src/assets/svg/error-svgrepo-com.svg",
         });
         return;
       }
@@ -737,7 +737,7 @@ function editForm(buttonEditing, inputNickname, inputEmail, inputPassword) {
     if (JSON.stringify(dataLocalstorage) === JSON.stringify(dataInputs)) {
       new Notification("Ошибка!", {
         body: "Вы не изменили данные.",
-        icon: "/src/assets/images/logoApp.png",
+        icon: "/src/assets/svg/error-svgrepo-com.svg",
       });
     } else {
       const UserEdits = localStorage.setItem(
