@@ -15,52 +15,41 @@ logotypeApp.addEventListener("click", () => {
 
 // task
 
-createTaskButton.addEventListener(
-  "click",
-  () => {
-    function aara() {
-      const titleTaskSection = document.createElement("p");
-      titleTaskSection.textContent =
-        userData.nickname + " Начните свою цель с маленького напоминания!";
-      titleTaskSection.classList.add(
-        "text-white",
-        "text-3xl",
-        "font-medium",
-        "text-center",
-        "mt-20"
-      );
+createTaskButton.addEventListener("click", () => {
+  contentSection.textContent = "";
+  const titleTaskSection = document.createElement("p");
+  titleTaskSection.textContent =
+    userData.nickname + " Начните свою цель с маленького напоминания!";
+  titleTaskSection.classList.add(
+    "text-white",
+    "text-3xl",
+    "font-medium",
+    "text-center",
+    "mt-20"
+  );
 
-      const buttonCreate = document.createElement("button");
-      buttonCreate.textContent = "Создать";
-      buttonCreate.type = "button";
-      buttonCreate.classList.add(
-        "border-2",
-        "border-slate-900",
-        "bg-slate-900",
-        "hover:bg-slate-800",
-        "hover:border-slate-800",
-        "rounded-sm",
-        "h-10",
-        "w-80",
-        "text-2xl",
-        "cursor-pointer",
-        "text-white",
-        "font-semibold",
-        "m-auto"
-      );
+  const buttonCreate = document.createElement("button");
+  buttonCreate.textContent = "Создать";
+  buttonCreate.type = "button";
+  buttonCreate.classList.add(
+    "border-2",
+    "border-slate-900",
+    "bg-slate-900",
+    "hover:bg-slate-800",
+    "hover:border-slate-800",
+    "rounded-sm",
+    "h-10",
+    "w-80",
+    "text-2xl",
+    "cursor-pointer",
+    "text-white",
+    "font-semibold",
+    "m-auto"
+  );
 
-      contentSection.append(titleTaskSection, buttonCreate);
-      createTask(buttonCreate, titleTaskSection);
-    }
-    if (contentSection.children.length > 0) {
-      contentSection.innerHTML = "";
-      aara();
-    } else {
-      aara();
-    }
-  },
-  { once: true }
-);
+  contentSection.append(titleTaskSection, buttonCreate);
+  createTask(buttonCreate, titleTaskSection);
+});
 
 function createTask(buttonCreate) {
   buttonCreate.addEventListener("click", () => {
@@ -365,18 +354,15 @@ function createTask(buttonCreate) {
           "task",
           JSON.stringify(valueTaskTwo)
         );
+        new Notification("Успешно!", {
+          body: "Вы создали задачу!",
+          icon: "/src/assets/svg/check-mark-circle-svgrepo-com.svg",
+        });
+        setTimeout(() => {
+          location.href = "";
+        }, 3000);
         return;
-      } else {
-        console.log("bbb");
       }
-
-      new Notification("Успешно!", {
-        body: "Вы создали задачу!",
-        icon: "/src/assets/svg/check-mark-circle-svgrepo-com.svg",
-      });
-      // setTimeout(() => {
-      //   location.href = "";
-      // }, 3000);
     });
 
     buttonCancel.addEventListener("click", () => {
@@ -410,150 +396,147 @@ function createTask(buttonCreate) {
 }
 
 // tasklist
-taskListButton.addEventListener(
-  "click",
-  () => {
-    const taskOne = localStorage.getItem("task");
-    const taskGroup = [];
-    taskGroup.push(taskOne);
-    if (taskGroup[0] !== null) {
-      function createOneItem() {
-        const getTask = localStorage.getItem("task");
-        const valueGetTask = JSON.parse(getTask);
-        const captionTask = valueGetTask.fieldTitle;
-        const directionTask = valueGetTask.fieldDescription;
-        const dateTaskLocalSt = valueGetTask.dataInput;
-        const periodTask = valueGetTask.timeInput;
+taskListButton.addEventListener("click", () => {
+  contentSection.textContent = "";
+  const taskOne = localStorage.getItem("task");
+  const taskGroup = [];
+  taskGroup.push(taskOne);
+  if (taskGroup[0] !== null) {
+    function createOneItem() {
+      const getTask = localStorage.getItem("task");
+      const valueGetTask = JSON.parse(getTask);
+      const captionTask = valueGetTask.fieldTitle;
+      const directionTask = valueGetTask.fieldDescription;
+      const dateTaskLocalSt = valueGetTask.dataInput;
+      const periodTask = valueGetTask.timeInput;
 
-        const buttonSport = document.createElement("button");
-        const buttonWork = document.createElement("button");
-        const buttonIncome = document.createElement("button");
-        const buttonRelationship = document.createElement("button");
-        const buttonStorage = document.createElement("button");
-        const buttonInterest = document.createElement("button");
+      const buttonSport = document.createElement("button");
+      const buttonWork = document.createElement("button");
+      const buttonIncome = document.createElement("button");
+      const buttonRelationship = document.createElement("button");
+      const buttonStorage = document.createElement("button");
+      const buttonInterest = document.createElement("button");
 
-        const buttonTaskGroup = [
-          buttonSport,
-          buttonWork,
-          buttonIncome,
-          buttonRelationship,
-          buttonStorage,
-          buttonInterest,
-        ];
+      const buttonTaskGroup = [
+        buttonSport,
+        buttonWork,
+        buttonIncome,
+        buttonRelationship,
+        buttonStorage,
+        buttonInterest,
+      ];
 
-        const objectButton = {
-          0: buttonSport,
-          1: buttonWork,
-          2: buttonIncome,
-          3: buttonRelationship,
-          4: buttonStorage,
-          5: buttonInterest,
-        };
+      const objectButton = {
+        0: buttonSport,
+        1: buttonWork,
+        2: buttonIncome,
+        3: buttonRelationship,
+        4: buttonStorage,
+        5: buttonInterest,
+      };
 
-        const backgroundTaskGroup = document.createElement("div");
-        backgroundTaskGroup.classList.add(
-          "flex",
-          "flex-col",
-          "gap-5",
-          "max-w",
-          "h-162",
-          "m-10"
-        );
-
-        contentSection.append(backgroundTaskGroup);
-
-        const taskOneBackground = document.createElement("div");
-        taskOneBackground.classList.add(
-          "flex",
-          "flex-col",
-          "gap-2",
-          "w-100",
-          "h-100",
-          "p-2",
-          "bg-slate-900",
-          "rounded-xl",
-          "shadow-lg"
-        );
-        const numberTask = document.createElement("p");
-        numberTask.textContent = "Задача: 1";
-        numberTask.classList.add("text-white", "text-2xl", "font-semibold");
-
-        const titleTask = document.createElement("p");
-        titleTask.textContent = captionTask;
-        titleTask.classList.add("text-white", "text-2xl", "font-semibold");
-
-        const descriptionTask = document.createElement("p");
-        descriptionTask.textContent = directionTask;
-        descriptionTask.classList.add("text-white", "text-xl", "fond-medium");
-
-        const dataTask = document.createElement("p");
-        dataTask.textContent = dateTaskLocalSt;
-        dataTask.classList.add("text-white", "text-2xl");
-
-        const timeTask = document.createElement("p");
-        timeTask.textContent = periodTask;
-        timeTask.classList.add("text-white", "text-2xl");
-
-        const titleOver = document.createElement("div");
-        titleOver.textContent = "Закончили задачу раньше?";
-        titleOver.classList.add(
-          "text-white",
-          "text-xl",
-          "fond-medium",
-          "flex",
-          "gap-5"
-        );
-
-        const confirmationСheckbox = document.createElement("input");
-        confirmationСheckbox.type = "checkbox";
-        confirmationСheckbox.classList.add("text-start", "mt-1");
-
-        confirmationСheckbox.addEventListener("change", () => {
-          const completedData = {
-            completedCaptionTask: captionTask,
-            completedDirectionTask: directionTask,
-            completedDateTaskLocalSt: dateTaskLocalSt,
-          };
-          console.log(completedData);
-          const completedTask = localStorage.setItem(
-            "completedTask",
-            JSON.stringify(completedData)
-          );
-          localStorage.removeItem("task");
-          location.href = "";
-        });
-
-        backgroundTaskGroup.append(taskOneBackground);
-        taskOneBackground.append(
-          numberTask,
-          titleTask,
-          descriptionTask,
-          dataTask,
-          timeTask,
-          titleOver
-        );
-        titleOver.append(confirmationСheckbox);
-      }
-
-      createOneItem();
-      return;
-    } else {
-      const titleTaskList = document.createElement("div");
-      titleTaskList.textContent = "Вы не создали задачу!";
-      titleTaskList.classList.add(
-        "text-white",
+      const backgroundTaskGroup = document.createElement("div");
+      backgroundTaskGroup.classList.add(
         "flex",
-        "justify-center",
-        "font-semibold",
-        "text-3xl",
-        "mt-60"
+        "flex-col",
+        "gap-5",
+        "max-w",
+        "h-162",
+        "m-10"
       );
 
-      contentSection.append(titleTaskList);
+      contentSection.append(backgroundTaskGroup);
+
+      const taskOneBackground = document.createElement("div");
+      taskOneBackground.classList.add(
+        "flex",
+        "flex-col",
+        "gap-2",
+        "w-100",
+        "h-100",
+        "p-2",
+        "bg-slate-900",
+        "rounded-xl",
+        "shadow-lg"
+      );
+      const numberTask = document.createElement("p");
+      numberTask.textContent = "Задача: 1";
+      numberTask.classList.add("text-white", "text-2xl", "font-semibold");
+
+      const titleTask = document.createElement("p");
+      titleTask.textContent = captionTask;
+      titleTask.classList.add("text-white", "text-2xl", "font-semibold");
+
+      const descriptionTask = document.createElement("p");
+      descriptionTask.textContent = directionTask;
+      descriptionTask.classList.add("text-white", "text-xl", "fond-medium");
+
+      const dataTask = document.createElement("p");
+      dataTask.textContent = dateTaskLocalSt;
+      dataTask.classList.add("text-white", "text-2xl");
+
+      const timeTask = document.createElement("p");
+      timeTask.textContent = periodTask;
+      timeTask.classList.add("text-white", "text-2xl");
+
+      const titleOver = document.createElement("div");
+      titleOver.textContent = "Закончили задачу раньше?";
+      titleOver.classList.add(
+        "text-white",
+        "text-xl",
+        "fond-medium",
+        "flex",
+        "gap-5"
+      );
+
+      const confirmationСheckbox = document.createElement("input");
+      confirmationСheckbox.type = "checkbox";
+      confirmationСheckbox.classList.add("text-start", "mt-1");
+
+      confirmationСheckbox.addEventListener("change", () => {
+        const completedData = {
+          completedCaptionTask: captionTask,
+          completedDirectionTask: directionTask,
+          completedDateTaskLocalSt: dateTaskLocalSt,
+        };
+        console.log(completedData);
+        const completedTask = localStorage.setItem(
+          "completedTask",
+          JSON.stringify(completedData)
+        );
+        localStorage.removeItem("task");
+        location.href = "";
+      });
+
+      backgroundTaskGroup.append(taskOneBackground);
+      taskOneBackground.append(
+        numberTask,
+        titleTask,
+        descriptionTask,
+        dataTask,
+        timeTask,
+        titleOver
+      );
+      titleOver.append(confirmationСheckbox);
     }
-  },
-  { once: true }
-);
+
+    createOneItem();
+    return;
+  } else {
+    const titleTaskList = document.createElement("div");
+    titleTaskList.textContent = "Вы не создали задачу!";
+    titleTaskList.classList.add(
+      "text-white",
+      "flex",
+      "justify-center",
+      "font-semibold",
+      "text-3xl",
+      "mt-60"
+    );
+
+    contentSection.append(titleTaskList);
+  }
+});
 
 if (localStorage.getItem("task")) {
   const interValid = setInterval(NotificationTask, 2000);
@@ -590,142 +573,154 @@ if (localStorage.getItem("task")) {
 }
 // completed
 completedButton.addEventListener("click", () => {
+  contentSection.textContent = "";
   const dateCompletedTask = JSON.parse(localStorage.getItem("completedTask"));
+  if (dateCompletedTask == null) {
+    const titleMessageCompleted = document.createElement("div");
+    titleMessageCompleted.textContent = "Вы не выполнили задачу!";
+    titleMessageCompleted.classList.add(
+      "text-white",
+      "flex",
+      "justify-center",
+      "font-semibold",
+      "text-3xl",
+      "mt-60"
+    );
+    contentSection.append(titleMessageCompleted);
+    return;
+  } else {
+    const completedBackground = document.createElement("div");
+    completedBackground.classList.add(
+      "flex",
+      "flex-col",
+      "gap-5",
+      "max-w",
+      "h-162",
+      "m-10"
+    );
+    const completedTaskOne = document.createElement("div");
+    completedTaskOne.classList.add(
+      "flex",
+      "flex-col",
+      "gap-2",
+      "w-100",
+      "h-50",
+      "p-2",
+      "bg-slate-900",
+      "rounded-xl",
+      "shadow-lg"
+    );
 
-  const completedBackground = document.createElement("div");
-  completedBackground.classList.add(
-    "flex",
-    "flex-col",
-    "gap-5",
-    "max-w",
-    "h-162",
-    "m-10"
-  );
-  const completedTaskOne = document.createElement("div");
-  completedTaskOne.classList.add(
-    "flex",
-    "flex-col",
-    "gap-2",
-    "w-100",
-    "h-50",
-    "p-2",
-    "bg-slate-900",
-    "rounded-xl",
-    "shadow-lg"
-  );
+    const completedTitle = document.createElement("p");
+    completedTitle.textContent = dateCompletedTask.completedCaptionTask;
 
-  const completedTitle = document.createElement("p");
-  completedTitle.textContent = dateCompletedTask.completedCaptionTask;
+    const completedDirection = document.createElement("p");
+    completedDirection.textContent = dateCompletedTask.completedDirectionTask;
 
-  const completedDirection = document.createElement("p");
-  completedDirection.textContent = dateCompletedTask.completedDirectionTask;
+    const completedDate = document.createElement("p");
+    completedDate.textContent = dateCompletedTask.completedDateTaskLocalSt;
 
-  const completedDate = document.createElement("p");
-  completedDate.textContent = dateCompletedTask.completedDateTaskLocalSt;
-
-  contentSection.append(completedBackground);
-  completedBackground.append(completedTaskOne);
-  completedTaskOne.append(completedTitle, completedDirection, completedDate);
+    contentSection.append(completedBackground);
+    completedBackground.append(completedTaskOne);
+    completedTaskOne.append(completedTitle, completedDirection, completedDate);
+  }
 });
 // profile
-profileButton.addEventListener(
-  "click",
-  () => {
-    contentSection.classList.add("flex", "justify-center", "items-center");
+profileButton.addEventListener("click", () => {
+  contentSection.textContent = "";
+  contentSection.classList.add("flex", "justify-center", "items-center");
 
-    const titleProfile = document.createElement("p");
-    titleProfile.textContent = "Добро пожаловать в Ваш профиль!";
-    titleProfile.classList.add("text-3xl", "text-white");
+  const titleProfile = document.createElement("p");
+  titleProfile.textContent = "Добро пожаловать в Ваш профиль!";
+  titleProfile.classList.add("text-3xl", "text-white");
 
-    const titleInputNickname = document.createElement("p");
-    titleInputNickname.textContent = "Nickname";
-    titleInputNickname.classList.add("text-white", "mt-4");
+  const titleInputNickname = document.createElement("p");
+  titleInputNickname.textContent = "Nickname";
+  titleInputNickname.classList.add("text-white", "mt-4");
 
-    const inputNickname = document.createElement("p");
-    inputNickname.contentEditable = true;
-    inputNickname.classList.add(
-      "items-center",
-      "flex",
-      "bg-slate-900",
-      "w-100",
-      "h-10",
-      "rounded-md",
-      "shadow-lg",
-      "text-white"
-    );
+  const inputNickname = document.createElement("p");
+  inputNickname.contentEditable = true;
+  inputNickname.classList.add(
+    "items-center",
+    "flex",
+    "bg-slate-900",
+    "w-100",
+    "h-10",
+    "rounded-md",
+    "shadow-lg",
+    "text-white"
+  );
 
-    const nicknameUser = userData.nickname;
-    inputNickname.textContent = nicknameUser;
+  const nicknameUser = userData.nickname;
+  inputNickname.textContent = nicknameUser;
 
-    const titleInputEmail = document.createElement("p");
-    titleInputEmail.textContent = "Email";
-    titleInputEmail.classList.add("text-white", "mt-4");
+  const titleInputEmail = document.createElement("p");
+  titleInputEmail.textContent = "Email";
+  titleInputEmail.classList.add("text-white", "mt-4");
 
-    const inputEmail = document.createElement("p");
-    inputEmail.contentEditable = true;
-    inputEmail.classList.add(
-      "items-center",
-      "flex",
-      "bg-slate-900",
-      "w-100",
-      "h-10",
-      "rounded-md",
-      "shadow-lg",
-      "text-white"
-    );
+  const inputEmail = document.createElement("p");
+  inputEmail.contentEditable = true;
+  inputEmail.classList.add(
+    "items-center",
+    "flex",
+    "bg-slate-900",
+    "w-100",
+    "h-10",
+    "rounded-md",
+    "shadow-lg",
+    "text-white"
+  );
 
-    const emailUser = userData.email;
-    inputEmail.textContent = emailUser;
+  const emailUser = userData.email;
+  inputEmail.textContent = emailUser;
 
-    const titleInputPassword = document.createElement("p");
-    titleInputPassword.textContent = "Password";
-    titleInputPassword.classList.add("text-white", "mt-4");
+  const titleInputPassword = document.createElement("p");
+  titleInputPassword.textContent = "Password";
+  titleInputPassword.classList.add("text-white", "mt-4");
 
-    const inputPassword = document.createElement("p");
-    inputPassword.contentEditable = true;
-    inputPassword.classList.add(
-      "items-center",
-      "flex",
-      "bg-slate-900",
-      "w-100",
-      "h-10",
-      "rounded-md",
-      "shadow-lg",
-      "text-white"
-    );
+  const inputPassword = document.createElement("p");
+  inputPassword.contentEditable = true;
+  inputPassword.classList.add(
+    "items-center",
+    "flex",
+    "bg-slate-900",
+    "w-100",
+    "h-10",
+    "rounded-md",
+    "shadow-lg",
+    "text-white"
+  );
 
-    const passwordUser = userData.password;
-    inputPassword.textContent = passwordUser;
+  const passwordUser = userData.password;
+  inputPassword.textContent = passwordUser;
 
-    const buttonEditing = document.createElement("button");
-    buttonEditing.type = "button";
-    buttonEditing.textContent = "Редактировать";
-    buttonEditing.id = "buttonEditing";
-    buttonEditing.classList.add(
-      "bg-slate-900",
-      "w-100",
-      "h-10",
-      "mt-10",
-      "rounded-md",
-      "shadow-lg",
-      "text-white",
-      "cursor-pointer",
-      "hover:bg-slate-800"
-    );
-    contentSection.append(
-      titleProfile,
-      titleInputNickname,
-      inputNickname,
-      titleInputEmail,
-      inputEmail,
-      titleInputPassword,
-      inputPassword,
-      buttonEditing
-    );
-    editForm(buttonEditing, inputNickname, inputEmail, inputPassword);
-  },
-  { once: true }
-);
+  const buttonEditing = document.createElement("button");
+  buttonEditing.type = "button";
+  buttonEditing.textContent = "Редактировать";
+  buttonEditing.id = "buttonEditing";
+  buttonEditing.classList.add(
+    "bg-slate-900",
+    "w-100",
+    "h-10",
+    "mt-10",
+    "rounded-md",
+    "shadow-lg",
+    "text-white",
+    "cursor-pointer",
+    "hover:bg-slate-800"
+  );
+  contentSection.append(
+    titleProfile,
+    titleInputNickname,
+    inputNickname,
+    titleInputEmail,
+    inputEmail,
+    titleInputPassword,
+    inputPassword,
+    buttonEditing
+  );
+  editForm(buttonEditing, inputNickname, inputEmail, inputPassword);
+});
 
 function editForm(buttonEditing, inputNickname, inputEmail, inputPassword) {
   buttonEditing.addEventListener("click", (e) => {
