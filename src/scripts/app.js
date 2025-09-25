@@ -9,10 +9,10 @@ const contentSection = document.getElementById("contentSection");
 const userDataString = localStorage.getItem("user");
 const userData = JSON.parse(userDataString);
 
+// logotype
 logotypeApp.addEventListener("click", () => {
-  location.href = "";
+  contentSection.innerHTML = "";
 });
-
 // task
 
 createTaskButton.addEventListener("click", () => {
@@ -359,8 +359,8 @@ function createTask(buttonCreate) {
           icon: "/src/assets/svg/check-mark-circle-svgrepo-com.svg",
         });
         setTimeout(() => {
-          location.href = "";
-        }, 3000);
+          contentSection.innerHTML = "";
+        }, 1000);
         return;
       }
     });
@@ -405,17 +405,78 @@ taskListButton.addEventListener("click", () => {
     function createOneItem() {
       const getTask = localStorage.getItem("task");
       const valueGetTask = JSON.parse(getTask);
+      const buttonCategoryTask = valueGetTask.buttonCategory;
       const captionTask = valueGetTask.fieldTitle;
       const directionTask = valueGetTask.fieldDescription;
       const dateTaskLocalSt = valueGetTask.dataInput;
       const periodTask = valueGetTask.timeInput;
 
       const buttonSport = document.createElement("button");
+      buttonSport.textContent = "Спорт";
+      buttonSport.classList.add(
+        "h-7",
+        "w-25",
+        "rounded-sm",
+        "border-slate-800",
+        "border-2",
+        "text-white",
+        "cursor-pointer"
+      );
       const buttonWork = document.createElement("button");
+      buttonWork.textContent = "Работа";
+      buttonWork.classList.add(
+        "h-7",
+        "w-25",
+        "rounded-sm",
+        "border-slate-800",
+        "border-2",
+        "text-white",
+        "cursor-pointer"
+      );
       const buttonIncome = document.createElement("button");
+      buttonIncome.textContent = "Заработок";
+      buttonIncome.classList.add(
+        "h-7",
+        "w-25",
+        "rounded-sm",
+        "border-slate-800",
+        "border-2",
+        "text-white",
+        "cursor-pointer"
+      );
       const buttonRelationship = document.createElement("button");
+      buttonRelationship.textContent = "Отношения";
+      buttonRelationship.classList.add(
+        "h-7",
+        "w-25",
+        "rounded-sm",
+        "border-slate-800",
+        "border-2",
+        "text-white",
+        "cursor-pointer"
+      );
       const buttonStorage = document.createElement("button");
+      buttonStorage.textContent = "Накопления";
+      buttonStorage.classList.add(
+        "h-7",
+        "w-25",
+        "rounded-sm",
+        "border-red-800",
+        "border-2",
+        "text-white",
+        "cursor-pointer"
+      );
       const buttonInterest = document.createElement("button");
+      buttonInterest.textContent = "Хобби";
+      buttonInterest.classList.add(
+        "h-7",
+        "w-25",
+        "rounded-sm",
+        "border-slate-800",
+        "border-2",
+        "text-white",
+        "cursor-pointer"
+      );
 
       const buttonTaskGroup = [
         buttonSport,
@@ -425,15 +486,6 @@ taskListButton.addEventListener("click", () => {
         buttonStorage,
         buttonInterest,
       ];
-
-      const objectButton = {
-        0: buttonSport,
-        1: buttonWork,
-        2: buttonIncome,
-        3: buttonRelationship,
-        4: buttonStorage,
-        5: buttonInterest,
-      };
 
       const backgroundTaskGroup = document.createElement("div");
       backgroundTaskGroup.classList.add(
@@ -518,6 +570,14 @@ taskListButton.addEventListener("click", () => {
         titleOver
       );
       titleOver.append(confirmationСheckbox);
+      
+      const keysButtonCategory = Object.keys(buttonTaskGroup);
+      keysButtonCategory.forEach((element) => {
+        if (buttonCategoryTask == element) {
+          const rrrras = buttonTaskGroup[element];
+          taskOneBackground.append(rrrras);
+        }
+      });
     }
 
     createOneItem();
