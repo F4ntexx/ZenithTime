@@ -19,12 +19,13 @@ createTaskButton.addEventListener("click", () => {
   contentSection.textContent = "";
   const titleTaskSection = document.createElement("p");
   titleTaskSection.textContent =
-    userData.nickname + " Начните свою цель с маленького напоминания!";
+    userData.nickname + ",начните свою цель с маленького напоминания!";
   titleTaskSection.classList.add(
     "text-white",
     "text-3xl",
     "font-medium",
     "text-center",
+    "w-150",
     "mt-20"
   );
 
@@ -282,8 +283,15 @@ function createTask(buttonCreate) {
     let sortedButtons = [];
     buttonGroup.forEach((element, index) => {
       element.addEventListener("click", () => {
-        element.classList.add("border-white");
-        sortedButtons.push(index);
+        if (sortedButtons < 2) {
+          element.classList.add("border-white");
+          sortedButtons.push(index);
+        } else {
+          new Notification("Ошибка", {
+            body: "Нельзя иметь больше 1 категории!",
+            icon: "/src/assets/svg/error-svgrepo-com.svg",
+          });
+        }
       });
     });
 
@@ -461,7 +469,7 @@ taskListButton.addEventListener("click", () => {
         "h-7",
         "w-25",
         "rounded-sm",
-        "border-red-800",
+        "border-slate-800",
         "border-2",
         "text-white",
         "cursor-pointer"
@@ -512,34 +520,24 @@ taskListButton.addEventListener("click", () => {
         "shadow-lg"
       );
       const numberTask = document.createElement("p");
-      numberTask.textContent = "Задача: 1";
+      numberTask.textContent = "Задача:";
       numberTask.classList.add("text-white", "text-2xl", "font-semibold");
 
       const titleTask = document.createElement("p");
-      titleTask.textContent = captionTask;
-      titleTask.classList.add("text-white", "text-2xl", "font-semibold");
+      titleTask.textContent = "Название: " + captionTask;
+      titleTask.classList.add("text-white", "text-2xl");
 
       const descriptionTask = document.createElement("p");
-      descriptionTask.textContent = directionTask;
+      descriptionTask.textContent = "Описание " + directionTask;
       descriptionTask.classList.add("text-white", "text-xl", "fond-medium");
 
       const dataTask = document.createElement("p");
-      dataTask.textContent = dateTaskLocalSt;
+      dataTask.textContent = "Дата: " + dateTaskLocalSt;
       dataTask.classList.add("text-white", "text-2xl");
 
       const timeTask = document.createElement("p");
-      timeTask.textContent = periodTask;
+      timeTask.textContent = "Время " + periodTask;
       timeTask.classList.add("text-white", "text-2xl");
-
-      const titleOver = document.createElement("div");
-      titleOver.textContent = "Закончили задачу раньше?";
-      titleOver.classList.add(
-        "text-white",
-        "text-xl",
-        "fond-medium",
-        "flex",
-        "gap-5"
-      );
 
       const confirmationСheckbox = document.createElement("input");
       confirmationСheckbox.type = "checkbox";
@@ -560,6 +558,25 @@ taskListButton.addEventListener("click", () => {
         location.href = "";
       });
 
+      const titleOver = document.createElement("div");
+      titleOver.textContent = "Закончили задачу раньше?";
+      titleOver.classList.add(
+        "text-white",
+        "text-xl",
+        "fond-medium",
+        "flex",
+        "gap-5"
+      );
+
+      let categoryTask;
+
+      const keysButtonCategory = Object.keys(buttonTaskGroup);
+      keysButtonCategory.forEach((element) => {
+        if (buttonCategoryTask == element) {
+          categoryTask = buttonTaskGroup[element];
+        }
+      });
+
       backgroundTaskGroup.append(taskOneBackground);
       taskOneBackground.append(
         numberTask,
@@ -567,31 +584,22 @@ taskListButton.addEventListener("click", () => {
         descriptionTask,
         dataTask,
         timeTask,
+        categoryTask,
         titleOver
       );
       titleOver.append(confirmationСheckbox);
-      
-      const keysButtonCategory = Object.keys(buttonTaskGroup);
-      keysButtonCategory.forEach((element) => {
-        if (buttonCategoryTask == element) {
-          const rrrras = buttonTaskGroup[element];
-          taskOneBackground.append(rrrras);
-        }
-      });
     }
-
     createOneItem();
     return;
   } else {
     const titleTaskList = document.createElement("div");
     titleTaskList.textContent = "Вы не создали задачу!";
     titleTaskList.classList.add(
-      "text-white",
       "flex",
       "justify-center",
+      "text-white",
       "font-semibold",
-      "text-3xl",
-      "mt-60"
+      "text-3xl"
     );
 
     contentSection.append(titleTaskList);
@@ -631,6 +639,7 @@ if (localStorage.getItem("task")) {
     return;
   }
 }
+
 // completed
 completedButton.addEventListener("click", () => {
   contentSection.textContent = "";
@@ -664,21 +673,25 @@ completedButton.addEventListener("click", () => {
       "flex-col",
       "gap-2",
       "w-100",
-      "h-50",
+      "h-30",
       "p-2",
       "bg-slate-900",
       "rounded-xl",
-      "shadow-lg"
+      "shadow-lg",
+      "text-white"
     );
 
     const completedTitle = document.createElement("p");
-    completedTitle.textContent = dateCompletedTask.completedCaptionTask;
+    completedTitle.textContent =
+      "Название: " + dateCompletedTask.completedCaptionTask;
 
     const completedDirection = document.createElement("p");
-    completedDirection.textContent = dateCompletedTask.completedDirectionTask;
+    completedDirection.textContent =
+      "Описание: " + dateCompletedTask.completedDirectionTask;
 
     const completedDate = document.createElement("p");
-    completedDate.textContent = dateCompletedTask.completedDateTaskLocalSt;
+    completedDate.textContent =
+      "Дата: " + dateCompletedTask.completedDateTaskLocalSt;
 
     contentSection.append(completedBackground);
     completedBackground.append(completedTaskOne);
